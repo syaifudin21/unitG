@@ -82,7 +82,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Pegawai::class,
         ],
-        'dokter' => [
+        'dokters' => [
             'driver' => 'eloquent',
             'model' => App\Models\Dokter::class,
         ],

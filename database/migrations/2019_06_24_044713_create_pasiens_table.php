@@ -21,6 +21,7 @@ class CreatePasiensTable extends Migration
             $table->enum('lp',['Laki-laki', 'Perempuan']);
             $table->string('kota');
             $table->text('alamat_pasien');
+            $table->string('gol_darah')->nullable();
             $table->string('hp_pasien')->nullable();
             $table->string('pekerjaan')->default("Wiraswasta");
             $table->string('agama');
