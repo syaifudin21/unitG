@@ -15,9 +15,7 @@ Route::put('/dokter/update', 'Pegawai\DokterController@update')->name('pegawai.d
 Route::delete('/dokter/delete/{id}', 'Pegawai\DokterController@delete')->name('pegawai.dokter.delete');
 
 Route::get('/pasien', 'Pegawai\PasienController@index')->name('pegawai.pasien');
-Route::get('/pasien/tambah', 'Pegawai\PasienController@create')->name('pegawai.pasien.create');
 Route::get('/pasien/show/{id}', 'Pegawai\PasienController@show')->name('pegawai.pasien.show');
-Route::post('/pasien/tambah', 'Pegawai\PasienController@store')->name('pegawai.pasien.store');
 Route::get('/pasien/edit/{id}', 'Pegawai\PasienController@edit')->name('pegawai.pasien.edit');
 Route::put('/pasien/update', 'Pegawai\PasienController@update')->name('pegawai.pasien.update');
 Route::delete('/pasien/delete/{id}', 'Pegawai\PasienController@delete')->name('pegawai.pasien.delete');

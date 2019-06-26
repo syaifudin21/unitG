@@ -16,5 +16,6 @@ class Pasien extends Authenticatable
         'password', 'remember_token',
     ];
     protected $casts = [
+        
     ];
 }
