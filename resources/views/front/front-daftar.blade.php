@@ -38,8 +38,9 @@
           </div>
           <div class="form-group contact-forms">
             <select name="lp" class="form-control">
-              <option>Laki-laki</option>
-              <option>Perempuan</option>
+              <option disabled selected>Pilih Jenis Kelamin</option>
+              <option {{ old('lp')=='Laki-laki' ? 'selected' : ''}}>Laki-laki</option>
+              <option {{ old('lp')=='Perempuan' ? 'selected' : ''}}>Perempuan</option>
             </select>
             @if ($errors->has('lp'))
                 <strong class="text-danger">{{ $errors->first('lp') }}</strong>
@@ -77,12 +78,13 @@
           </div>
           <div class="form-group contact-forms">
             <select name="agama" class="form-control">
-              <option>Islam</option>
-              <option>Kristen</option>
-              <option>Katolik</option>
-              <option>Hindu</option>
-              <option>Budha</option>
-              <option>Kong Hu Chu</option>
+              <option disabled selected>Pilih Agama</option>
+              <option {{ old('agama')=='Islam' ? 'selected' : ''}}>Islam</option>
+              <option {{ old('agama')=='Kristen' ? 'selected' : ''}}>Kristen</option>
+              <option {{ old('agama')=='Katolik' ? 'selected' : ''}}>Katolik</option>
+              <option {{ old('agama')=='Hindu' ? 'selected' : ''}}>Hindu</option>
+              <option {{ old('agama')=='Budha' ? 'selected' : ''}}>Budha</option>
+              <option {{ old('agama')=='Kong Hu Chu' ? 'selected' : ''}}>Kong Hu Chu</option>
             </select>
             @if ($errors->has('agama'))
                 <strong class="text-danger">{{ $errors->first('agama') }}</strong>

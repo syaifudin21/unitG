@@ -25,12 +25,30 @@
     <div class="row justify-content-md-center">
         <div class="col-md-9 col-sm-12">
 			<div class="tile">
-                    <div class="text-center">
-                        <h3>{{$dokter->nama}}</h3>
-                        <p>{{$dokter->alamat}}</p>
-                        <p>{{$dokter->username}}</p>
-                    <img src="{{asset($dokter->foto)}}" style="max-width: 400px" class="rounded" alt="Icon dokter" class="mr-3">
-                    </div>
+                    <div class="row">
+                            <div class="col-md-3 col-sm-12">
+                                @if (!empty($dokter->foto))
+                                <img src="{{asset($dokter->foto)}}" style="max-width: 100%" class="rounded" alt="Icon dokter" class="mr-3">
+                                @else
+                                <div class="text-center m-3">
+                                <i class="fa fa-user-circle-o fa-5x" aria-hidden="true"></i>
+                                </div>
+                                @endif
+                            </div>
+                            <div class="col-md-9 col-sm-12">
+        
+                                <table class="table table-sm table-borderless">
+                                    <tr><td>Nama</td> <td>{{$dokter->nama}}</td></tr>
+                                    <tr><td>Username</td> <td>{{$dokter->username}}</td></tr>
+                                    <tr><td>Jenis Kelamin</td> <td>{{$dokter->lp}}</td></tr>
+                                    <tr><td>Pendidikan</td> <td>{{$dokter->pendidikan}}</td></tr>
+                                    <tr><td>Alamat</td> <td>{{$dokter->alamat}}</td></tr>
+                                    <tr><td>HP</td> <td>{{$dokter->hp}}</td></tr>
+                                    <tr><td>Spesialis</td> <td>{{$dokter->spesialis}}</td></tr>
+                                    <tr><td>Agama</td> <td>{{$dokter->agama}}</td></tr>
+                                </table>
+                            </div>
+                        </div>
                     <br>
 
             <div class="tile-footer">

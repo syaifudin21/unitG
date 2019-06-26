@@ -63,6 +63,8 @@
 
         <li><a class="app-menu__item {{(Request::is('pegawai'))? 'active': ''}}" href="{{route('pegawai.home')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
 
+        <li><a class="app-menu__item {{(Request::is('pegawai/periksa') OR \Request::is('pegawai/periksa/*'))? 'active': ''}}" href="{{route('pegawai.periksa')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Periksa</span></a></li>
+
         <li><a class="app-menu__item {{(Request::is('pegawai/dokter') OR \Request::is('pegawai/dokter/*'))? 'active': ''}}" href="{{route('pegawai.dokter')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Dokter</span></a></li>
         
         <li><a class="app-menu__item {{(Request::is('pegawai/pasien') OR \Request::is('pegawai/pasien/*'))? 'active': ''}}" href="{{route('pegawai.pasien')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Pasien</span></a></li>

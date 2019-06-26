@@ -19,4 +19,12 @@ class Images extends Model
             'name' => $filename
         ];
     }
+    public function number($id, $auth)
+    {
+        $iduser = sprintf('%09d', $id);
+        $auth = ($auth=='Dokter')? 930: 210;
+        $formula = $auth.$iduser;
+
+        return $formula;
+    }
 }

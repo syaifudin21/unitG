@@ -52,7 +52,12 @@
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar" style="background-color: {{env('THEME_COLOR_3')}}">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="{{asset(env('APP_LOGO'))}}" alt="User Image" style="max-height: 64px; max-width: 64px">
+      <div class="app-sidebar__user">
+          @if (!empty(Auth::user('dokter')->foto))
+          <img class="app-sidebar__user-avatar" src="{{asset(Auth::user('dokter')->foto)}}" alt="User Image" style="max-height: 64px; max-width: 64px">
+          @else
+          <img class="app-sidebar__user-avatar" src="{{asset(env('APP_LOGO'))}}" alt="User Image" style="max-height: 64px; max-width: 64px">
+          @endif
         <div>
           <p class="app-sidebar__user-name">{{Auth::user('dokter')->nama}}</p>
 

@@ -39,6 +39,63 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="lp" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                                    <div class="col-sm-10">
+                                        <select name="lp" class="form-control">
+                                            <option disabled selected>Pilih Jenis Kelamin</option>
+                                            <option {{ old('lp')=='Laki-laki' ? 'selected' : ''}}>Laki-laki</option>
+                                            <option {{ old('lp')=='Perempuan' ? 'selected' : ''}}>Perempuan</option>
+                                        </select>
+                                        @if ($errors->has('lp'))
+                                            <small class="form-text text-muted">{{ $errors->first('lp') }}</small>
+                                        @endif
+                                    </div>
+                                </div>
+                                 <div class="form-group row">
+                                    <label for="agama" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                                    <div class="col-sm-10">
+                                        <select name="agama" class="form-control">
+                                            <option disabled selected>Pilih Agama</option>
+                                            <option {{ old('agama')=='Islam' ? 'selected' : ''}}>Islam</option>
+                                            <option {{ old('agama')=='Kristen' ? 'selected' : ''}}>Kristen</option>
+                                            <option {{ old('agama')=='Katolik' ? 'selected' : ''}}>Katolik</option>
+                                            <option {{ old('agama')=='Hindu' ? 'selected' : ''}}>Hindu</option>
+                                            <option {{ old('agama')=='Budha' ? 'selected' : ''}}>Budha</option>
+                                            <option {{ old('agama')=='Kong Hu Chu' ? 'selected' : ''}}>Kong Hu Chu</option>
+                                        </select>
+                                        @if ($errors->has('agama'))
+                                            <small class="form-text text-muted">{{ $errors->first('agama') }}</small>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="pendidikan" class="col-sm-2 col-form-label">Pendidikan</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="pendidikan" id="pendidikan" placeholder="Pendidikan" value="{{old('pendidikan')}}">
+                                        @if ($errors->has('pendidikan'))
+                                            <small class="form-text text-muted">{{ $errors->first('pendidikan') }}</small>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="hp" class="col-sm-2 col-form-label">Handphone</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="hp" id="hp" placeholder="Handphone" value="{{old('hp')}}">
+                                        @if ($errors->has('hp'))
+                                            <small class="form-text text-muted">{{ $errors->first('hp') }}</small>
+                                        @endif
+                                    </div>
+                                </div>
+                                 <div class="form-group row">
+                                    <label for="spesialis" class="col-sm-2 col-form-label">Spesialis</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="spesialis" id="spesialis" placeholder="Spesialis / Keahlian" value="{{old('spesialis')}}">
+                                        @if ($errors->has('spesialis'))
+                                            <small class="form-text text-muted">{{ $errors->first('spesialis') }}</small>
+                                        @endif
+                                    </div>
+                                </div>
 
                                 <div class="form-group row">
                                     <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>

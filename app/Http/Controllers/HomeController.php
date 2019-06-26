@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\RumahSakit;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Pasien;
 
 class HomeController extends Controller
@@ -23,7 +24,7 @@ class HomeController extends Controller
     {
         $this->validate($request, [
             'nama'  => 'required|string',
-            'username' => 'required|string',
+            'username' => 'required|string|unique:pasiens',
             'password' => 'required|string',
             'lp' => 'required|string',
             'kota' => 'required|string',
@@ -41,13 +42,27 @@ class HomeController extends Controller
         $pasien['password'] = Hash::make($request['password']);
         $pasien->save();
 
+        $pasien['nomor'] = app('App\Helper\Images')->number($pasien->id, 'Pasien');
+        $pasien->save();
+
         if($pasien){
+            Auth::guard('pasien')->logout();
             return redirect(route('pasien.login'))
             ->with(['alert'=> "'title':'Berhasil','text':'Data Berhasil Disimpan', 'icon':'success','buttons': false, 'timer': 1200"]);
         }else{
             return back()
             ->with(['alert'=> "'title':'Gagal Menyimpan','text':'Data gagal disimpan, periksa kembali data inputan', 'icon':'error'"])
             ->withInput($request->all());
+        }
+    }
+    public function cari()
+    {
+        $karakter = isset($_GET['karakter']) ? $_GET['karakter'] : '000000000000';
+        $pasien = Pasien::where('nomor', $karakter)->orWhere('username', $karakter)->first();
+        if(!empty($pasien)){
+            return ['pasien' => $pasien, 'kode' => '00'];
+        }else{
+            return ['kode' => '01', 'message' => 'Tidak Diktemukan'];
         }
     }
 }

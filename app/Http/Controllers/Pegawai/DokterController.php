@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Dokter;
 use File;
 
-class dokterController extends Controller
+class DokterController extends Controller
 {
     public function __construct()
     {
@@ -38,11 +38,15 @@ class dokterController extends Controller
             'alamat' => 'required|string',
         ]);
 
+
         $dokter = new Dokter();
         $dokter->fill($request->all());
         $upload = app('App\Helper\Images')->upload($request->file('foto'), 'dokter');
         $dokter['foto'] = $upload['url'];
         $dokter['password'] = Hash::make($request['password']);
+        $dokter->save();
+
+        $dokter['nomor'] = app('App\Helper\Images')->number($dokter->id,'Dokter');
         $dokter->save();
 
         if($dokter){

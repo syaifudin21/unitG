@@ -20,6 +20,7 @@
                     <table class="table table-sm">
                         <thead>
                             <tr>
+                                <th>Nomor</th>
                                 <th>Nama pasien</th>
                                 <th>Alamat</th>
                                 <th>Username</th>
@@ -29,12 +30,12 @@
                         <tbody>
                             @foreach ($pasiens as $pasien)
                             <tr>
+                                <td>{{$pasien->nomor}}</td>
                                 <td><b>{{$pasien->nama}}</b></td>
                                 <td>{{$pasien->alamat_pasien}}</td>
                                 <td>{{$pasien->username}}</td>
                                 <td class="text-center">
                                     <a class="btn btn-outline-info btn-sm" href="{{route('pegawai.pasien.show', ['id'=> $pasien->id])}}">Detail</a>
-                                    <a class="btn btn-outline-secondary btn-sm" href="{{route('pegawai.pasien.edit', ['id'=>$pasien->id])}}">Edit</a>
                                     <button onClick="hapus('{{route('pegawai.pasien.delete', ['id'=> $pasien->id])}}', 'Berita yakin ingin dihapus')" class="btn btn-danger btn-sm">Hapus</button>
                              
                                 </td>
