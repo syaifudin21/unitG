@@ -19,7 +19,8 @@
     <div class="row">
 
       <div class="col-lg-7 col-md-6 contact-form-txt">
-        <form action="#" method="post">
+        <form action="{{route('pasien.daftar.store')}}" method="post">
+          @method('POST') @csrf
           <div class="form-group contact-forms">
             <input type="text" class="form-control" placeholder="Nama" required="" name="nama" value="{{old('nama')}}">
             @if ($errors->has('nama'))

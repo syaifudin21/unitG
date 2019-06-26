@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\RumahSakit;
+use App\Models\Pasien;
 
 class HomeController extends Controller
 {
@@ -25,7 +27,6 @@ class HomeController extends Controller
             'password' => 'required|string',
             'lp' => 'required|string',
             'kota' => 'required|string',
-            'foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'alamat_pasien' => 'required|string',
             'gol_darah' => 'required|string',
             'hp_pasien' => 'required|string',
@@ -37,8 +38,7 @@ class HomeController extends Controller
 
         $pasien = new Pasien();
         $pasien->fill($request->all());
-        $upload = app('App\Helper\Images')->upload($request->file('foto'), 'pasien');
-        $pasien['foto'] = $upload['url'];
+        $pasien['password'] = Hash::make($request['password']);
         $pasien->save();
 
         if($pasien){

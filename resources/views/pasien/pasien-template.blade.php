@@ -24,7 +24,7 @@
   </head>
   <body class="app sidebar-mini rtl">
     <!-- Navbar-->
-  <header class="app-header" style="background-color: {{env('COLOR_pasien', '#fff')}}">
+  <header class="app-header" style="background-color: {{env('COLOR_PASIEN', '#fff')}}">
     <a class="app-header__logo"  style="font-size: 12px;"  href="#">{{env('APP_NAME')}}</a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
@@ -62,12 +62,11 @@
       <ul class="app-menu">
 
         <li><a class="app-menu__item {{(Request::is('pasien'))? 'active': ''}}" href="{{route('pasien.home')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-{{-- 
-        <li><a class="app-menu__item {{(Request::is('admin/gunung') OR \Request::is('admin/gunung/*'))? 'active': ''}}" href="{{route('admin.gunung')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Gunung</span></a></li>
 
-        <li><a class="app-menu__item {{(Request::is('admin/berita') OR \Request::is('admin/berita/*'))? 'active': ''}}" href="{{route('admin.berita')}}"><i class="app-menu__icon fa fa-newspaper-o"></i><span class="app-menu__label"> Berita</span></a></li>
+        {{-- <li><a class="app-menu__item {{(Request::is('pasien/dokter') OR \Request::is('pasien/dokter/*'))? 'active': ''}}" href="{{route('pasien.dokter')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Dokter</span></a></li>
+        
+        <li><a class="app-menu__item {{(Request::is('pasien/pasien') OR \Request::is('pasien/pasien/*'))? 'active': ''}}" href="{{route('pasien.pasien')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Pasien</span></a></li> --}}
 
-        <li><a class="app-menu__item {{(Request::is('admin/user') OR \Request::is('admin/user/*'))? 'active': ''}}" href="{{route('admin.user')}}"><i class="app-menu__icon fa fa-user-circle-o"></i><span class="app-menu__label"> User Admin</span></a></li> --}}
       </ul>
     </aside>
     @yield('content')

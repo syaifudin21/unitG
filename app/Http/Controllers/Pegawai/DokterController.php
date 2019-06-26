@@ -103,6 +103,8 @@ class dokterController extends Controller
     {
         $dokter = Dokter::findOrFail($id);
         if (!empty($dokter)) {
+            File::delete($dokter->foto);
+
             // foreach ($pegawai->galeri()->get() as $galeri) {
             //     File::delete($galeri->foto);
             //     $galeri->delete();

@@ -13,6 +13,7 @@
 
 Route::get('/', 'HomeController@home')->name('home');
 Route::get('/daftar', 'HomeController@daftar')->name('pasien.daftar');
+Route::post('/daftar/store', 'HomeController@store')->name('pasien.daftar.store');
 
 
 Route::post('/upload/gambar', 'ImagesController@upload')->name('upload.gambar');
