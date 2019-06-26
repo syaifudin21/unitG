@@ -20,6 +20,7 @@ class CreateDoktersTable extends Migration
             $table->string('password');
             $table->string('alamat');
             $table->string('spesialis')->nullable();
+            $table->text('foto')->nullable();
             $table->enum('status_on',['ON', 'OFF'])->default("OFF");
             $table->rememberToken();
             $table->timestamps();

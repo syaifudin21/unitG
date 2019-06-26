@@ -20,11 +20,13 @@ class CreatePasiensTable extends Migration
             $table->string('password');
             $table->enum('lp',['Laki-laki', 'Perempuan']);
             $table->string('kota');
+            $table->text('foto')->nullable();
             $table->text('alamat_pasien');
             $table->string('gol_darah')->nullable();
             $table->string('hp_pasien')->nullable();
             $table->string('pekerjaan')->default("Wiraswasta");
             $table->string('agama');
+            $table->string('nama_wali')->nullable();
             $table->string('hp_wali')->nullable();
             $table->string('alamat_wali')->nullable();
             $table->rememberToken();

@@ -10,7 +10,7 @@ class Dokter extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'nama','username','password','alamat','spesialis','status_on'
+        'nama','username','password','foto','alamat','spesialis','status_on'
     ];
     protected $hidden = [
         'password', 'remember_token',

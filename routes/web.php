@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@home')->name('home');
+Route::get('/daftar', 'HomeController@daftar')->name('pasien.daftar');
+
+
+Route::post('/upload/gambar', 'ImagesController@upload')->name('upload.gambar');
+Route::post('/galeri/store', 'ImagesController@store')->name('galeri.store');
+Route::delete('/galeri/delete/{id}', 'ImagesController@delete')->name('galeri.delete');
