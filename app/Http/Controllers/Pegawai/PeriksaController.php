@@ -99,6 +99,45 @@ class PeriksaController extends Controller
             ->withInput($request->all());
         }
     }
+    public function storepra(Request $request)
+    {
+        // dd($request);
+        $request->id = 4;
+        $periksa = DaftarPeriksa::findOrFail($request->id);
+        $periksa['keadaan_pra->avpu'] = $request->avpu;
+        $periksa['keadaan_pra->pernafasan'] = $request->pernafasan;
+        $periksa['keadaan_pra->tensi_darah'] = $request->tensidarah;
+        $periksa['keadaan_pra->suhu'] = $request->suhu;
+        $periksa['keadaan_pra->nadi'] = $request->nadi;
+        $periksa['keadaan_pra->spo2'] = $request->spo2;
+        $periksa['tindakan_pra->o2'] = $request->o2;
+        $periksa['tindakan_pra->cpr'] = $request->cpr;
+        $periksa['tindakan_pra->infus'] = $request->infus;
+        $periksa['tindakan_pra->ngt'] = $request->ngt;
+        $periksa['tindakan_pra->nasopharingeal_tube'] = $request->nasopharingealTube;
+        $periksa['tindakan_pra->ett'] = $request->ett;
+        $periksa['tindakan_pra->suction'] = $request->suction;
+        $periksa['tindakan_pra->krikotiroidotomi'] = $request->krikotiroidotomi;
+        $periksa['tindakan_pra->bvm'] = $request->bvm;
+        $periksa['tindakan_pra->bidai'] = $request->bidai;
+        $periksa['tindakan_pra->catheter_urine'] = $request->catheterUrine;
+        $periksa['tindakan_pra->beban_tekan'] = $request->bebanTekan;
+        $periksa['tindakan_pra->heacting'] = $request->heacting;
+        $periksa['tindakan_pra->obat'] = $request->obat;
+        $periksa['tindakan_pra->lain'] = $request->lain;
+        $periksa['keluhan_utama'] = $request->keluhanUtama;
+        $periksa['anemnesa'] = $request->anemnesa;
+        $periksa->save();
+        
+        if($periksa){
+            return back()
+            ->with(['alert'=> "'title':'Berhasil','text':'Data Berhasil Disimpan', 'icon':'success','buttons': false, 'timer': 1200"]);
+        }else{
+            return back()
+            ->with(['alert'=> "'title':'Gagal Menyimpan','text':'Data gagal disimpan, periksa kembali data inputan', 'icon':'error'"])
+            ->withInput($request->all());
+        }
+    }
     public function delete($id)
     {
         $periksa = DaftarPeriksa::findOrFail($id);

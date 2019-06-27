@@ -22,6 +22,10 @@ class Pasien extends Authenticatable
     {
         return $this->hasMany(DaftarPeriksa::class, 'pasien_id', 'id');
     }
+    public function riwayatpasien()
+    {
+        return $this->hasMany(RiwayatPasien::class, 'pasien_id', 'id');
+    }
     public function alatterpasang()
     {
         return $this->hasMany(AlatTerpasang::class, 'pasien_id', 'id');

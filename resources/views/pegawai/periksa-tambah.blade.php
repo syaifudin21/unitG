@@ -31,6 +31,16 @@
                     <input type="hidden" name="pasien_id" id="idPasien">
     
                         <div class="row">
+                            <div class="col-md-3 col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                    <strong>Foto Calon Pasien Pra Hospital</strong><hr>
+                                    </div>
+                                </div>
+
+                                <img src="{{asset('images/thumbnail.svg')}}" style="width: 100%" class="rounded" alt="thumbnail" id="fotoPasien">
+
+                            </div>
                             <div class="col-md-4 col-sm-12">
                                     <div class="row">
                                             <div class="col-sm-12">
@@ -311,6 +321,9 @@
                     $('#pasienAlamatWali').text(response.pasien.alamat_wali);
                     $('#CalonPasien').val(response.pasien.nama);
                     $('#idPasien').val(response.pasien.id);
+                    if (!empty(response.pasien.foto)) {
+                        $("#fotoPasien").attr("src",response.pasien.foto);
+                    }
                     
                 }else{
                     $('#pasienNama').html("Tidak Diketemukan");

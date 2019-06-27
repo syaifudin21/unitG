@@ -15,4 +15,7 @@ class RiwayatPasien extends Model
     public function pasien(){
         return $this->belongsTo(Pasien::class, 'pasien_id', 'id');
     }
+    public function dokter(){
+        return $this->belongsTo(Dokter::class, 'dokter_id', 'id');
+    }
 }

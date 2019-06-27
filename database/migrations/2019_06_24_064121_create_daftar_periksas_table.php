@@ -22,11 +22,12 @@ class CreateDaftarPeriksasTable extends Migration
             $table->string('cara_datang');
             $table->string('jenis_kasus');
             $table->text('keadaan_pra')->nullable();
+            $table->text('tindakan_pra')->nullable();
             $table->text('circulation')->nullable();
             $table->text('breathing')->nullable();
             $table->text('ariway')->nullable();
             $table->text('keluhan_utama')->nullable();
-            $table->text('anamnesa')->nullable();
+            $table->text('anemnesa')->nullable();
             $table->string('tanggal_masuk');
             $table->string('tanggal_keluar')->nullable();
             $table->timestamps();
