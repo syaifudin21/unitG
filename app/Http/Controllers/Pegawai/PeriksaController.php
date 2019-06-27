@@ -10,6 +10,10 @@ use App\Models\Pegawai;
 use App\Models\Dokter;
 use App\Models\RumahSakit;
 use Carbon\Carbon;
+use App\Models\TindakanKeperawatan;
+use App\Models\PemberianObat;
+use App\Models\AlatTerpasang;
+use App\Models\ObservasiLanjutan;
 
 class PeriksaController extends Controller
 {
@@ -207,6 +211,87 @@ class PeriksaController extends Controller
             ->withInput($request->all());
         }
 
+    }
+
+    public function createkeperawatan($periksa_id)
+    {
+        $periksa = DaftarPeriksa::findOrFail($periksa_id);
+        return view('pegawai.keperawatan-create', compact('periksa'));
+    }
+    public function storekeperawatan(Request $request)
+    {
+        $keperawatan = new TindakanKeperawatan();
+        $keperawatan->fill($request->all());
+        $keperawatan->save();
+
+        if($keperawatan){
+            return redirect($request->redirect)
+            ->with(['alert'=> "'title':'Berhasil','text':'Data Berhasil Disimpan', 'icon':'success','buttons': false, 'timer': 1200"]);
+        }else{
+            return back()
+            ->with(['alert'=> "'title':'Gagal Menyimpan','text':'Data gagal disimpan, periksa kembali data inputan', 'icon':'error'"])
+            ->withInput($request->all());
+        }
+    }
+    public function createobatcairan($periksa_id)
+    {
+        $periksa = DaftarPeriksa::findOrFail($periksa_id);
+        return view('pegawai.obatcairan-create', compact('periksa'));
+    }
+    public function storeobatcairan(Request $request)
+    {
+        $obatcairan = new PemberianObat();
+        $obatcairan->fill($request->all());
+        $obatcairan->save();
+
+        if($obatcairan){
+            return redirect($request->redirect)
+            ->with(['alert'=> "'title':'Berhasil','text':'Data Berhasil Disimpan', 'icon':'success','buttons': false, 'timer': 1200"]);
+        }else{
+            return back()
+            ->with(['alert'=> "'title':'Gagal Menyimpan','text':'Data gagal disimpan, periksa kembali data inputan', 'icon':'error'"])
+            ->withInput($request->all());
+        }
+    }
+    public function createobservasi($periksa_id)
+    {
+        $periksa = DaftarPeriksa::findOrFail($periksa_id);
+        return view('pegawai.observasi-create', compact('periksa'));
+    }
+    public function storeobservasi(Request $request)
+    {
+        $observasi = new ObservasiLanjutan();
+        $observasi->fill($request->all());
+        $observasi->save();
+
+        if($observasi){
+            return redirect($request->redirect)
+            ->with(['alert'=> "'title':'Berhasil','text':'Data Berhasil Disimpan', 'icon':'success','buttons': false, 'timer': 1200"]);
+        }else{
+            return back()
+            ->with(['alert'=> "'title':'Gagal Menyimpan','text':'Data gagal disimpan, periksa kembali data inputan', 'icon':'error'"])
+            ->withInput($request->all());
+        }
+    }
+    public function createalatterpasang($periksa_id)
+    {
+        $periksa = DaftarPeriksa::findOrFail($periksa_id);
+        return view('pegawai.alatterpasang-create', compact('periksa'));
+    }
+    public function storealatterpasang(Request $request)
+    {
+        $alatterpasang = new AlatTerpasang();
+        $alatterpasang->fill($request->all());
+        $alatterpasang->save();
+
+        if($alatterpasang){
+            return redirect($request->redirect)
+            ->with(['alert'=> "'title':'Berhasil','text':'Data Berhasil Disimpan', 'icon':'success','buttons': false, 'timer': 1200"]);
+        }else{
+            return back()
+            ->with(['alert'=> "'title':'Gagal Menyimpan','text':'Data gagal disimpan, periksa kembali data inputan', 'icon':'error'"])
+            ->withInput($request->all());
+        }
     }
     public function delete($id)
     {

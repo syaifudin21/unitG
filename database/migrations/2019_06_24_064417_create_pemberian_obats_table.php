@@ -18,8 +18,8 @@ class CreatePemberianObatsTable extends Migration
             $table->integer('nomor_rs');
             $table->integer('periksa_id');
             $table->integer('pasien_id');
-            $table->integer('pegawai_id');
-            $table->integer('dokter_id');
+            $table->integer('pegawai_id')->nullable();
+            $table->integer('dokter_id')->nullable();
             $table->string('obat_cairan');
             $table->string('dosis');
             $table->string('rute')->nullable();

@@ -28,3 +28,15 @@ Route::post('/periksa/tambah/primer', 'Pegawai\PeriksaController@storeprimer')->
 Route::get('/periksa/edit/{id}', 'Pegawai\PeriksaController@edit')->name('pegawai.periksa.edit');
 Route::put('/periksa/update', 'Pegawai\PeriksaController@update')->name('pegawai.periksa.update');
 Route::delete('/periksa/delete/{id}', 'Pegawai\PeriksaController@delete')->name('pegawai.periksa.delete');
+
+Route::get('/periksa/keperawatan/{periksa_id}', 'Pegawai\PeriksaController@createkeperawatan')->name('pegawai.keperawatan.create');
+Route::post('/periksa/keperawatan', 'Pegawai\PeriksaController@storekeperawatan')->name('pegawai.keperawatan.store');
+
+Route::get('/periksa/obatcairan/{periksa_id}', 'Pegawai\PeriksaController@createobatcairan')->name('pegawai.obatcairan.create');
+Route::post('/periksa/obatcairan', 'Pegawai\PeriksaController@storeobatcairan')->name('pegawai.obatcairan.store');
+
+Route::get('/periksa/observasi/{periksa_id}', 'Pegawai\PeriksaController@createobservasi')->name('pegawai.observasi.create');
+Route::post('/periksa/observasi', 'Pegawai\PeriksaController@storeobservasi')->name('pegawai.observasi.store');
+
+Route::get('/periksa/alatterpasang/{periksa_id}', 'Pegawai\PeriksaController@createalatterpasang')->name('pegawai.alatterpasang.create');
+Route::post('/periksa/alatterpasang', 'Pegawai\PeriksaController@storealatterpasang')->name('pegawai.alatterpasang.store');

@@ -568,8 +568,6 @@
                                         </div>
                                     </div>
                                     
-
-                                    
                                 </div>
                           </div>
                       </div>
@@ -583,6 +581,125 @@
                       </div>
                   </div>
                 </form>
+
+
+                <div class="tile">
+                    <h4 class="tile-title">Tindakan Keperawatan <a href="{{route('pegawai.keperawatan.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
+                    <div class="tile-body">
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Waktu</th>
+                                    <th>Tindakan Keperawatan</th>
+                                    <th class="text-center">Oleh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($periksa->tindakankeperawatan()->get() as $keperawatan)
+                                <tr>
+                                    <td>{{hari_tanggal_waktu($keperawatan->created_at,true)}}</td>
+                                    <td>{{$keperawatan->tindakan}}</td>
+                                    <td>{{!empty($dokter_id)? "Dokter ". $keperawatan->dokter->nama : $keperawatan->pegawai->nama}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tile">
+                    <h4 class="tile-title">Pemberian Obat dan Cairan Obat-obatan <a href="{{route('pegawai.obatcairan.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
+                    <div class="tile-body">
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Waktu</th>
+                                    <th>Nama Obat / Jenis Cairan</th>
+                                    <th>Rute</th>
+                                    <th>Dosis</th>
+                                    <th class="text-center">Oleh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($periksa->pemberianobat()->get() as $obatcairan)
+                                <tr>
+                                    <td>{{hari_tanggal_waktu($obatcairan->created_at,true)}}</td>
+                                    <td>{{$obatcairan->obat_cairan}}</td>
+                                    <td>{{$obatcairan->rute}}</td>
+                                    <td>{{$obatcairan->dosis}}</td>
+                                    <td>{{!empty($dokter_id)? "Dokter ". $obatcairan->dokter->nama : $obatcairan->pegawai->nama}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tile">
+                    <h4 class="tile-title">Observasi Lanjutan <a href="{{route('pegawai.observasi.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
+                    <div class="tile-body">
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Waktu</th>
+                                    <th>GCS</th>
+                                    <th>T</th>
+                                    <th>N</th>
+                                    <th>RR</th>
+                                    <th>S</th>
+                                    <th>SAT</th>
+                                    <th>Keluhan</th>
+                                    <th class="text-center">Oleh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($periksa->observasilanjutan()->get() as $observasi)
+                                <tr>
+                                    <td>{{hari_tanggal_waktu($observasi->created_at,true)}}</td>
+                                    <td>{{$observasi->gcs}}</td>
+                                    <td>{{$observasi->t}}</td>
+                                    <td>{{$observasi->n}}</td>
+                                    <td>{{$observasi->rr}}</td>
+                                    <td>{{$observasi->s}}</td>
+                                    <td>{{$observasi->sat}}</td>
+                                    <td>{{$observasi->keluhan}}</td>
+                                    <td>{{!empty($dokter_id)? "Dokter ". $observasi->dokter->nama : $observasi->pegawai->nama}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="tile">
+                    <h4 class="tile-title">Alat yang terpasang di pasiean <a href="{{route('pegawai.alatterpasang.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
+                    <div class="tile-body">
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Waktu</th>
+                                    <th>Jenis</th>
+                                    <th>Lokasi</th>
+                                    <th>Ukuran</th>
+                                    <th>Keterangan</th>
+                                    <th class="text-center">Oleh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($periksa->alatterpasang()->get() as $alatterpasang)
+                                <tr>
+                                    <td>{{hari_tanggal_waktu($alatterpasang->created_at,true)}}</td>
+                                    <td>{{$alatterpasang->jenis}}</td>
+                                    <td>{{$alatterpasang->lokasi}}</td>
+                                    <td>{{$alatterpasang->ukuran}}</td>
+                                    <td>{{$alatterpasang->keterangan}}</td>
+                                    <td>{{!empty($dokter_id)? "Dokter ". $alat->dokter->nama : $alatterpasang->pegawai->nama}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
                   
 			</div>
