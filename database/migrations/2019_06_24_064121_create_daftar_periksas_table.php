@@ -25,7 +25,7 @@ class CreateDaftarPeriksasTable extends Migration
             $table->text('tindakan_pra')->nullable();
             $table->text('circulation')->nullable();
             $table->text('breathing')->nullable();
-            $table->text('ariway')->nullable();
+            $table->text('airway')->nullable();
             $table->text('keluhan_utama')->nullable();
             $table->text('anemnesa')->nullable();
             $table->string('tanggal_masuk');

@@ -102,7 +102,6 @@ class PeriksaController extends Controller
     public function storepra(Request $request)
     {
         // dd($request);
-        $request->id = 4;
         $periksa = DaftarPeriksa::findOrFail($request->id);
         $periksa['keadaan_pra->avpu'] = $request->avpu;
         $periksa['keadaan_pra->pernafasan'] = $request->pernafasan;
@@ -137,6 +136,77 @@ class PeriksaController extends Controller
             ->with(['alert'=> "'title':'Gagal Menyimpan','text':'Data gagal disimpan, periksa kembali data inputan', 'icon':'error'"])
             ->withInput($request->all());
         }
+    }
+    public function storeprimer(Request $request)
+    {
+        $request->id = 4;
+        $periksa = DaftarPeriksa::findOrFail($request->id);
+        $periksa['airway->airway_patenTidak_paten'] = $request->airway_patenTidak_paten;
+        $periksa['airway->airway_patenTidak_tidakPaten'] = $request->airway_patenTidak_tidakPaten;
+        $periksa['airway->airway_patenTidak_tidakPatenSnoring'] = $request->airway_patenTidak_tidakPatenSnoring;
+        $periksa['airway->airway_patenTidak_tidakPatenGargling'] = $request->airway_patenTidak_tidakPatenGargling;
+        $periksa['airway->airway_patenTidak_tidakPatenStridor'] = $request->airway_patenTidak_tidakPatenStridor;
+        $periksa['airway->airway_patenTidak_tidakPatenBendaAsing'] = $request->airway_patenTidak_tidakPatenBendaAsing;
+        $periksa['airway->airway_patenTidak_tidakPatenLain'] = $request->airway_patenTidak_tidakPatenLain;
+        $periksa['airway->airway_keperawatan_JalanNafasTidakEfektif'] = $request->airway_keperawatan_JalanNafasTidakEfektif;
+        $periksa['airway->airway_keperawatan_resikoGagalNafas'] = $request->airway_keperawatan_resikoGagalNafas;
+        $periksa['breathing->breathing_polaNafas_teratur'] = $request->breathing_polaNafas_teratur;
+        $periksa['breathing->breathing_polaNafas_tidakTeratur'] = $request->breathing_polaNafas_tidakTeratur;
+        $periksa['breathing->breathing_suaranafas_vesikuler'] = $request->breathing_suaranafas_vesikuler;
+        $periksa['breathing->breathing_suaranafas_bronchovesikuler'] = $request->breathing_suaranafas_bronchovesikuler;
+        $periksa['breathing->breathing_suaranafas_whezing'] = $request->breathing_suaranafas_whezing;
+        $periksa['breathing->breathing_suaranafas_ronchi'] = $request->breathing_suaranafas_ronchi;
+        $periksa['breathing->breathing_polaNafas_apneu'] = $request->breathing_polaNafas_apneu;
+        $periksa['breathing->breathing_polaNafas_dyspneu'] = $request->breathing_polaNafas_dyspneu;
+        $periksa['breathing->breathing_polaNafas_bradipneu'] = $request->breathing_polaNafas_bradipneu;
+        $periksa['breathing->breathing_polaNafas_takhipneu'] = $request->breathing_polaNafas_takhipneu;
+        $periksa['breathing->breathing_polaNafas_orthopneu'] = $request->breathing_polaNafas_orthopneu;
+        $periksa['breathing->breathing_ototBantuNafas_reetraksiDada'] = $request->breathing_ototBantuNafas_reetraksiDada;
+        $periksa['breathing->breathing_ototBantuNafas_cupingHidung'] = $request->breathing_ototBantuNafas_cupingHidung;
+        $periksa['breathing->breathing_jenisNafas_pernafasanDada'] = $request->breathing_jenisNafas_pernafasanDada;
+        $periksa['breathing->breathing_jenisNafas_pernafasanPerut'] = $request->breathing_jenisNafas_pernafasanPerut;
+        $periksa['breathing->breathing_diagnosaKeperawatan_polaNafasTidakEfektif'] = $request->breathing_diagnosaKeperawatan_polaNafasTidakEfektif;
+        $periksa['breathing->breathing_diagnosaKeperawatan_gangguanPertukaranGas'] = $request->breathing_diagnosaKeperawatan_gangguanPertukaranGas;
+        $periksa['breathing->breathing_frekuensiNafas'] = $request->breathing_frekuensiNafas;
+        $periksa['circulation->circulation_akral_hangat'] = $request->circulation_akral_hangat;
+        $periksa['circulation->circulation_akral_dingin'] = $request->circulation_akral_dingin;
+        $periksa['circulation->circulation_pucat_ya'] = $request->circulation_pucat_ya;
+        $periksa['circulation->circulation_pucat_tidak'] = $request->circulation_pucat_tidak;
+        $periksa['circulation->circulation_cianosis_ya'] = $request->circulation_cianosis_ya;
+        $periksa['circulation->circulation_cianosis_tidak'] = $request->circulation_cianosis_tidak;
+        $periksa['circulation->circulation_pengisianKapiler_kurangDari2'] = $request->circulation_pengisianKapiler_kurangDari2;
+        $periksa['circulation->circulation_pengisianKapiler_lebihDari2'] = $request->circulation_pengisianKapiler_lebihDari2;
+        $periksa['circulation->circulation_tekananDarah'] = $request->circulation_tekananDarah;
+        $periksa['circulation->circulation_nadi'] = $request->circulation_nadi;
+        $periksa['circulation->circulation_nadi_tidakTeraba'] = $request->circulation_nadi_tidakTeraba;
+        $periksa['circulation->circulation_perdarahan_ya'] = $request->circulation_perdarahan_ya;
+        $periksa['circulation->circulation_perdarahan_lokasi'] = $request->circulation_perdarahan_lokasi;
+        $periksa['circulation->circulation_perdarahan_tidak'] = $request->circulation_perdarahan_tidak;
+        $periksa['circulation->circulation_kehilanganCairan_diare'] = $request->circulation_kehilanganCairan_diare;
+        $periksa['circulation->circulation_kehilanganCairan_muntah'] = $request->circulation_kehilanganCairan_muntah;
+        $periksa['circulation->circulation_kehilanganCairan_lukaBakar'] = $request->circulation_kehilanganCairan_lukaBakar;
+        $periksa['circulation->circulation_kehilanganCairan_perdarahan'] = $request->circulation_kehilanganCairan_perdarahan;
+        $periksa['circulation->circulation_kelembabanKulit_lembab'] = $request->circulation_kelembabanKulit_lembab;
+        $periksa['circulation->circulation_kelembabanKulit_kering'] = $request->circulation_kelembabanKulit_kering;
+        $periksa['circulation->circulation_turgor_normal'] = $request->circulation_turgor_normal;
+        $periksa['circulation->circulation_turgor_kurang'] = $request->circulation_turgor_kurang;
+        $periksa['circulation->circulation_luasLukaBakar'] = $request->circulation_luasLukaBakar;
+        $periksa['circulation->circulation_grade'] = $request->circulation_grade;
+        $periksa['circulation->circulation_produksiUrine'] = $request->circulation_produksiUrine;
+        $periksa['circulation->circulation_diagnosaKeperawatan_gangguanPerfusiJaringanPerifer'] = $request->circulation_diagnosaKeperawatan_gangguanPerfusiJaringanPerifer;
+        $periksa['circulation->circulation_diagnosaKeperawatan_gangguanKeseimbanganCairanElektrolit'] = $request->circulation_diagnosaKeperawatan_gangguanKeseimbanganCairanElektrolit;
+        $periksa['circulation->circulation_diagnosaKeperawatan_resikoShokHipovolemik'] = $request->circulation_diagnosaKeperawatan_resikoShokHipovolemik;
+        $periksa->save();
+        
+        if($periksa){
+            return back()
+            ->with(['alert'=> "'title':'Berhasil','text':'Data Berhasil Disimpan', 'icon':'success','buttons': false, 'timer': 1200"]);
+        }else{
+            return back()
+            ->with(['alert'=> "'title':'Gagal Menyimpan','text':'Data gagal disimpan, periksa kembali data inputan', 'icon':'error'"])
+            ->withInput($request->all());
+        }
+
     }
     public function delete($id)
     {

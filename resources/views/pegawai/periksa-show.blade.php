@@ -310,36 +310,11 @@
                    </div>
                   </div>
 
+                <form action="{{route('pegawai.periksa.store.primer')}}" method="post">
+                    @csrf <input type="hidden" name="id" value="{{$periksa->id}}">
                   <div class="tile">
                       <h4 class="tile-title">Pengkajian Keperawatan Primer</h4>
                       
-
-
-                      {{-- breathing
-
-                      pola_nafas (teratur, tidak_teratur)
-                      suara_nafas (vesikuler, bronchovesikuler, whezing, ronchi)
-                      pola_nafas (apneu dyspneu bradipneu takhipneu, orthopneu, penggunaan_otot_bantu_nafas, pernafasan_perut)
-                      frekuensi_nafas ..... xmnt
-                      diagnosa_keperawatan (pola_nafas_tidak_efektif, gangguanPertukaranGas)
-
-                      circulation
-                      Akral (hangat, dingin)
-                      pucat (ya, tidak)
-                      cianosis (ya, tidak)
-                      pengisian_kapiler (<2 detik, >2 detik)
-                          tekanan_darah ... mmHg
-                          nadi (teraba ....x/mnt, tidak_teraba)
-                          perdarahan (ya ....cc lokasi perdarahan ...... , tidak)
-                          Adanya riwayat kehilangan cairan dalam jumlah besar (Diare, Muntah, Luka bakar, Perdarahan)
-                          Kelembaban kulit (lembab, kering)
-                          turgor (normal, kurang)
-                          Luas luka bakar ........ % 
-                          Grade .......
-                          Produksi Urine ....... cc
-                          Diagnosa Keperawatan (Ganggunan perfusi jaringan perifer, Gangguan keseimbangan cairan elektrolit, Resiko shok Hipovolemik) --}}
-                        
-
                       <div class="tile-body">
                           <div class="row">
                                 <div class="col-md-3 col-sm-12">
@@ -348,46 +323,267 @@
                                         <strong>Airway</strong><hr>
                                         </div>
                                     </div>
-                                    Paten Tidak Paten
-                      diagnosaKeperawatan bersihkanJalanNafasTidakEfektif resikoGagalnafas --}}
+                                    <b>Paten Tidak Paten  </b>                                  
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" name="paten" value="Paten" id="paten" {{!empty($periksa->tindakan_pra['paten'])? 'checked' : ''}}>
-                                        <label class="custom-control-label" for="paten">Paten</label>
+                                        <input type="checkbox" class="custom-control-input" name="airway_patenTidak_paten" value="Paten" id="airway_patenTidak_paten" {{!empty($periksa->airway['airway_patenTidak_paten'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="airway_patenTidak_paten">Paten</label>
                                     </div>
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" name="paten" value="Tidak Paten" id="tidakpaten" {{!empty($periksa->tindakan_pra['paten'])? 'checked' : ''}}>
-                                        <label class="custom-control-label" for="tidakpaten">Tidak Paten</label>
+                                        <input type="checkbox" class="custom-control-input" name="airway_patenTidak_tidakPaten" value="Tidak Paten" id="airway_patenTidak_tidakPaten" {{!empty($periksa->airway['airway_patenTidak_tidakPaten'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="airway_patenTidak_tidakPaten">Tidak Paten</label>
                                     </div>
                                         <div class="ml-4">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" name="tidak_paten_snoring" value="Snoring" id="tidak_paten_snoring" {{!empty($periksa->tindakan_pra['tidak_paten_snoring'])? 'checked' : ''}}>
-                                                <label class="custom-control-label" for="tidak_paten_snoring">Snoring</label>
+                                                <input type="checkbox" class="custom-control-input" name="airway_patenTidak_tidakPatenSnoring" value="Snoring" id="airway_patenTidak_tidakPatenSnoring" {{!empty($periksa->airway['airway_patenTidak_tidakPatenSnoring'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="airway_patenTidak_tidakPatenSnoring">Snoring</label>
                                             </div>
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" name="tidak_paten_gargling" value="Gargling" id="tidak_paten_gargling" {{!empty($periksa->tindakan_pra['tidak_paten_gargling'])? 'checked' : ''}}>
-                                                <label class="custom-control-label" for="tidak_paten_gargling">Gargling</label>
+                                                <input type="checkbox" class="custom-control-input" name="airway_patenTidak_tidakPatenGargling" value="Gargling" id="airway_patenTidak_tidakPatenGargling" {{!empty($periksa->airway['airway_patenTidak_tidakPatenGargling'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="airway_patenTidak_tidakPatenGargling">Gargling</label>
                                             </div>
                                            
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" name="tidak_paten_stridor" value="Striodor" id="tidak_paten_stridor" {{!empty($periksa->tindakan_pra['tidak_paten_stridor'])? 'checked' : ''}}>
-                                                <label class="custom-control-label" for="tidak_paten_stridor">Striodor</label>
+                                                <input type="checkbox" class="custom-control-input" name="airway_patenTidak_tidakPatenStridor" value="Striodor" id="airway_patenTidak_tidakPatenStridor" {{!empty($periksa->airway['airway_patenTidak_tidakPatenStridor'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="airway_patenTidak_tidakPatenStridor">Striodor</label>
                                             </div>
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" name="tidak_paten_benda_asing" value="Benda Asing" id="tidak_paten_benda_asing" {{!empty($periksa->tindakan_pra['tidak_paten_benda_asing'])? 'checked' : ''}}>
-                                                <label class="custom-control-label" for="tidak_paten_benda_asing">Benda Asing</label>
+                                                <input type="checkbox" class="custom-control-input" name="airway_patenTidak_tidakPatenBendaAsing" value="Benda Asing" id="airway_patenTidak_tidakPatenBendaAsing" {{!empty($periksa->airway['airway_patenTidak_tidakPatenBendaAsing'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="airway_patenTidak_tidakPatenBendaAsing">Benda Asing</label>
                                             </div>
-                                            <input type="text" class="form-control form-control-sm" name="tidak_paten_lain" id="tidak_paten_lain" placeholder="Lain-lain" value="{{!empty($periksa->tindakan_pra['lain'])? $periksa->tindakan_pra['lain'] : ''}}">
+                                            <input type="text" class="form-control form-control-sm" name="airway_patenTidak_tidakPatenLain" id="airway_patenTidak_tidakPatenLain" placeholder="Lain-lain" value="{{!empty($periksa->airway['airway_patenTidak_tidakPatenLain'])? $periksa->airway['airway_patenTidak_tidakPatenLain'] : ''}}">
                                             
                                         </div>
-                                    
+                                    <b> Keperawatan </b>
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" name="paten" value="Tidak Paten" id="tidakpaten" {{!empty($periksa->tindakan_pra['paten'])? 'checked' : ''}}>
-                                        <label class="custom-control-label" for="tidakpaten">Tidak Paten</label>
+                                        <input type="checkbox" class="custom-control-input" name="airway_keperawatan_JalanNafasTidakEfektif" value="Bersihkan Jalan Nafas Tidak Efektif" id="airway_keperawatan_JalanNafasTidakEfektif" {{!empty($periksa->airway['airway_keperawatan_JalanNafasTidakEfektif'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="airway_keperawatan_JalanNafasTidakEfektif">Bersihkan Jalan Nafas Tidak Efektif</label>
                                     </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="airway_keperawatan_resikoGagalNafas" value="Tidak Paten" id="airway_keperawatan_resikoGagalNafas" {{!empty($periksa->airway['airway_keperawatan_resikoGagalNafas'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="airway_keperawatan_resikoGagalNafas">Resiko Gagal Nafas</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                        <strong>Breathing</strong><hr>
+                                        </div>
+                                    </div>
+                                    <b>Pola Nafas</b> 
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_polaNafas_teratur" value="Teratur" id="breathing_polaNafas_teratur" {{!empty($periksa->breathing['breathing_polaNafas_teratur'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_polaNafas_teratur">Teratur</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_polaNafas_tidakTeratur" value="Tidak Teratur" id="breathing_polaNafas_tidakTeratur" {{!empty($periksa->breathing['breathing_polaNafas_tidakTeratur'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_polaNafas_tidakTeratur">Tidak Teratur</label>
+                                    </div>  
+                                    <b>Suara Nafas</b> 
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_suaranafas_vesikuler" value="Vesikuler" id="breathing_suaranafas_vesikuler" {{!empty($periksa->breathing['breathing_suaranafas_vesikuler'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_suaranafas_vesikuler">Vesikuler</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_suaranafas_bronchovesikuler" value="Bronchovesikuler" id="breathing_suaranafas_bronchovesikuler" {{!empty($periksa->breathing['breathing_suaranafas_bronchovesikuler'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_suaranafas_bronchovesikuler">Bronchovesikuler</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_suaranafas_whezing" value="Whezing" id="breathing_suaranafas_whezing" {{!empty($periksa->breathing['breathing_suaranafas_whezing'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_suaranafas_whezing">Whezing</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_suaranafas_ronchi" value="Ronchi" id="breathing_suaranafas_ronchi" {{!empty($periksa->breathing['breathing_suaranafas_ronchi'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_suaranafas_ronchi">Ronchi</label>
+                                    </div>  
+                                    <b>Pola Nafas</b>
+                                     <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_polaNafas_apneu" value="Apneu" id="breathing_polaNafas_apneu" {{!empty($periksa->breathing['breathing_polaNafas_apneu'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_polaNafas_apneu">Apneu</label>
+                                    </div>
+                                     <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_polaNafas_dyspneu" value="Dyspneu" id="breathing_polaNafas_dyspneu" {{!empty($periksa->breathing['breathing_polaNafas_dyspneu'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_polaNafas_dyspneu">Dyspneu</label>
+                                    </div>  
+                                     <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_polaNafas_bradipneu" value="Bradipneu" id="breathing_polaNafas_bradipneu" {{!empty($periksa->breathing['breathing_polaNafas_bradipneu'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_polaNafas_bradipneu">Bradipneu</label>
+                                    </div>  
+                                     <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_polaNafas_takhipneu" value="Takhipneu" id="breathing_polaNafas_takhipneu" {{!empty($periksa->breathing['breathing_polaNafas_takhipneu'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_polaNafas_takhipneu">Takhipneu</label>
+                                    </div> 
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_polaNafas_orthopneu" value="Orthopneu" id="breathing_polaNafas_orthopneu" {{!empty($periksa->breathing['breathing_polaNafas_orthopneu'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_polaNafas_orthopneu">Orthopneu</label>
+                                    </div>  
+                                    <b>Penggunaan Otot Bantu Nafas</b>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_ototBantuNafas_reetraksiDada" value="Reetraksi Dada" id="breathing_ototBantuNafas_reetraksiDada" {{!empty($periksa->breathing['breathing_ototBantuNafas_reetraksiDada'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_ototBantuNafas_reetraksiDada">Reetraksi Dada</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_ototBantuNafas_cupingHidung" value="Cuping Hidung" id="breathing_ototBantuNafas_cupingHidung" {{!empty($periksa->breathing['breathing_ototBantuNafas_cupingHidung'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_ototBantuNafas_cupingHidung">Cuping Hidung</label>
+                                    </div>
+                                    <b>Jenis Nafas</b>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_jenisNafas_pernafasanDada" value="Pernafasan Dada" id="breathing_jenisNafas_pernafasanDada" {{!empty($periksa->breathing['breathing_jenisNafas_pernafasanDada'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_jenisNafas_pernafasanDada">Pernafasan Dada</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_jenisNafas_pernafasanPerut" value="Pernafasn Perut" id="breathing_jenisNafas_pernafasanPerut" {{!empty($periksa->breathing['breathing_jenisNafas_pernafasanPerut'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_jenisNafas_pernafasanPerut">Pernafasn Perut</label>
+                                    </div>
+                                    <b>Frekuensi Nafas</b>   
+                                            <input type="text" class="form-control form-control-sm" name="breathing_frekuensiNafas" id="breathing_frekuensiNafas" placeholder="Frekuensi Nafas (xmnt)" value="{{!empty($periksa->breathing['breathing_frekuensiNafas'])? $periksa->breathing['breathing_frekuensiNafas'] : ''}}">
+                                    <b>Diagnosa Keperawatan</b>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_diagnosaKeperawatan_polaNafasTidakEfektif" value="Pola Nafas Tidak Efektif" id="breathing_diagnosaKeperawatan_polaNafasTidakEfektif" {{!empty($periksa->breathing['breathing_diagnosaKeperawatan_polaNafasTidakEfektif'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_diagnosaKeperawatan_polaNafasTidakEfektif">Pola Nafas Tidak Efektif</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="breathing_diagnosaKeperawatan_gangguanPertukaranGas" value="Gangguan Pertukaran Gas" id="breathing_diagnosaKeperawatan_gangguanPertukaranGas" {{!empty($periksa->breathing['breathing_diagnosaKeperawatan_gangguanPertukaranGas'])? 'checked' : ''}}>
+                                        <label class="custom-control-label" for="breathing_diagnosaKeperawatan_gangguanPertukaranGas">Gangguan Pertukaran Gas</label>
+                                    </div>
+
+                                    
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                        <strong>Circulation</strong><hr>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <b>Akral</b> 
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_akral_hangat" value="Hangat" id="circulation_akral_hangat" {{!empty($periksa->circulation['circulation_akral_hangat'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_akral_hangat">Hangat</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_akral_dingin" value="Dingin" id="circulation_akral_dingin" {{!empty($periksa->circulation['circulation_akral_dingin'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_akral_dingin">Dingin</label>
+                                            </div>
+                                            <b>Pucat</b>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_pucat_ya" value="Ya" id="circulation_pucat_ya" {{!empty($periksa->circulation['circulation_pucat_ya'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_pucat_ya">Ya</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_pucat_tidak" value="Tidak" id="circulation_pucat_tidak" {{!empty($periksa->circulation['circulation_pucat_tidak'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_pucat_tidak">Tidak</label>
+                                            </div>
+                                            <b>Cianosis</b> 
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_cianosis_ya" value="Ya" id="circulation_cianosis_ya" {{!empty($periksa->circulation['circulation_cianosis_ya'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_cianosis_ya">Ya</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_cianosis_tidak" value="Tidak" id="circulation_cianosis_tidak" {{!empty($periksa->circulation['circulation_cianosis_tidak'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_cianosis_tidak">Tidak</label>
+                                            </div>
+                                            <b>Pengisian Kapiler</b> 
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_pengisianKapiler_kurangDari2" value="< 2 Detik" id="circulation_pengisianKapiler_kurangDari2" {{!empty($periksa->circulation['circulation_pengisianKapiler_kurangDari2'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_pengisianKapiler_kurangDari2">< 2 Detik</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_pengisianKapiler_lebihDari2" value="> 2 Detik" id="circulation_pengisianKapiler_lebihDari2" {{!empty($periksa->circulation['circulation_pengisianKapiler_lebihDari2'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_pengisianKapiler_lebihDari2">> 2 Detik</label>
+                                            </div>
+                                            <b>Tekanan Darah (mmHg)</b>
+                                            <input type="text" class="form-control form-control-sm" name="circulation_tekananDarah" id="circulation_tekananDarah" placeholder="Tekanan Darah (mmHg)" value="{{!empty($periksa->circulation['circulation_tekananDarah'])? $periksa->circulation['circulation_tekananDarah'] : ''}}">
+                                            <b>Nadi</b>
+                                            <input type="text" class="form-control form-control-sm" name="circulation_nadi" id="circulation_nadi" placeholder="Nadi (xmnt)" value="{{!empty($periksa->circulation['circulation_nadi'])? $periksa->circulation['circulation_nadi'] : ''}}">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_nadi_tidakTeraba" value="> 2 Detik" id="circulation_nadi_tidakTeraba" {{!empty($periksa->circulation['circulation_nadi_tidakTeraba'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_nadi_tidakTeraba">Tidak Teraba</label>
+                                            </div>
+                                            <b>Perdarahan</b> 
+                                            <input type="text" class="form-control form-control-sm" name="circulation_perdarahan_ya" id="circulation_perdarahan_ya" placeholder="Ya (....... cc)" value="{{!empty($periksa->circulation['circulation_perdarahan_ya'])? $periksa->circulation['circulation_perdarahan_ya'] : ''}}">
+                                            <input type="text" class="form-control form-control-sm" name="circulation_perdarahan_lokasi" id="circulation_perdarahan_lokasi" placeholder="Lokasi Perdarahan " value="{{!empty($periksa->circulation['circulation_perdarahan_lokasi'])? $periksa->circulation['circulation_perdarahan_lokasi'] : ''}}">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_perdarahan_tidak" value="Tidak" id="circulation_perdarahan_tidak" {{!empty($periksa->circulation['circulation_perdarahan_tidak'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_perdarahan_tidak">Tidak</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <b>Adanya riwayat kehilangan cairan dalam jumlah besar</b> 
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_kehilanganCairan_diare" value="Diare" id="circulation_kehilanganCairan_diare" {{!empty($periksa->circulation['circulation_kehilanganCairan_diare'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_kehilanganCairan_diare">Diare</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_kehilanganCairan_muntah" value="Muntah" id="circulation_kehilanganCairan_muntah" {{!empty($periksa->circulation['circulation_kehilanganCairan_muntah'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_kehilanganCairan_muntah">Muntah</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_kehilanganCairan_lukaBakar" value="Luka Bakar" id="circulation_kehilanganCairan_lukaBakar" {{!empty($periksa->circulation['circulation_kehilanganCairan_lukaBakar'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_kehilanganCairan_lukaBakar">Luka Bakar</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_kehilanganCairan_perdarahan" value="Perdarahan" id="circulation_kehilanganCairan_perdarahan" {{!empty($periksa->circulation['circulation_kehilanganCairan_perdarahan'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_kehilanganCairan_perdarahan">Perdarahan</label>
+                                            </div>
+                                            <b>Kelembabab kulit</b>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_kelembabanKulit_lembab" value="Lembab" id="circulation_kelembabanKulit_lembab" {{!empty($periksa->circulation['circulation_kelembabanKulit_lembab'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_kelembabanKulit_lembab">Lembab</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_kelembabanKulit_kering" value="Kering" id="circulation_kelembabanKulit_kering" {{!empty($periksa->circulation['circulation_kelembabanKulit_kering'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_kelembabanKulit_kering">Kering</label>
+                                            </div>
+                                            <b>Turgor</b> 
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_turgor_normal" value="Normal" id="circulation_turgor_normal" {{!empty($periksa->circulation['circulation_turgor_normal'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_turgor_normal">Normal</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_turgor_kurang" value="Kurang" id="circulation_turgor_kurang" {{!empty($periksa->circulation['circulation_turgor_kurang'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_turgor_kurang">Kurang</label>
+                                            </div>
+                                            <b>Luas Luka Bakar (%)</b> 
+                                            <input type="text" class="form-control form-control-sm" name="circulation_luasLukaBakar" id="circulation_luasLukaBakar" placeholder="Luas Luka Bakar (%)" value="{{!empty($periksa->circulation['circulation_luasLukaBakar'])? $periksa->circulation['circulation_luasLukaBakar'] : ''}}">
+                                            <b>Grade</b> 
+                                            <input type="text" class="form-control form-control-sm" name="circulation_grade" id="circulation_grade" placeholder="Grade" value="{{!empty($periksa->circulation['circulation_grade'])? $periksa->circulation['circulation_grade'] : ''}}">
+                                            <b>Produksi Urine (cc)</b>
+                                            <input type="text" class="form-control form-control-sm" name="circulation_produksiUrine" id="circulation_produksiUrine" placeholder="Produksi Urine (cc)" value="{{!empty($periksa->circulation['circulation_produksiUrine'])? $periksa->circulation['circulation_produksiUrine'] : ''}}">
+                                            <b>Diagnosa Keperawatan</b> 
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_diagnosaKeperawatan_gangguanPerfusiJaringanPerifer" value="Gangguan Perfusi Jaringan Perifer" id="circulation_diagnosaKeperawatan_gangguanPerfusiJaringanPerifer" {{!empty($periksa->circulation['circulation_diagnosaKeperawatan_gangguanPerfusiJaringanPerifer'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_diagnosaKeperawatan_gangguanPerfusiJaringanPerifer">Ganggunan perfusi jaringan perifer</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_diagnosaKeperawatan_gangguanKeseimbanganCairanElektrolit" value="Gangguan Keseimbangan Cairan Elektrolit" id="circulation_diagnosaKeperawatan_gangguanKeseimbanganCairanElektrolit" {{!empty($periksa->circulation['circulation_diagnosaKeperawatan_gangguanKeseimbanganCairanElektrolit'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_diagnosaKeperawatan_gangguanKeseimbanganCairanElektrolit">Gangguan keseimbangan cairan elektrolit</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="circulation_diagnosaKeperawatan_resikoShokHipovolemik" value="Resiko Shok Hipovolemik" id="circulation_diagnosaKeperawatan_resikoShokHipovolemik" {{!empty($periksa->circulation['circulation_diagnosaKeperawatan_resikoShokHipovolemik'])? 'checked' : ''}}>
+                                                <label class="custom-control-label" for="circulation_diagnosaKeperawatan_resikoShokHipovolemik">Resiko shok Hipovolemik</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+                                    
                                 </div>
                           </div>
                       </div>
+                      <div class="tile-footer">
+                            <div class="row">
+                                    <div class="col-8">
+                                            {{-- <small class="form-text text-muted" id="jadwalhelp">Keterangan </small> --}}
+                                    </div>
+                                    <div class="col-4"><button class="btn btn-primary btn-block" type="submit">Simpan</button></div>
+                                </div>
+                      </div>
                   </div>
+                </form>
+
                   
 			</div>
 		  </div>

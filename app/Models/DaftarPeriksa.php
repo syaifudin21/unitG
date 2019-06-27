@@ -7,14 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class DaftarPeriksa extends Model
 {
     protected $fillable = [
-        'nomor_rs','pasien_id','pegawai_id','dokter_id','cara_datang','jenis_kasus','keadaan_pra','tindakan_pra','keluhan_utama','anemnesa','circulation','breathing','ariway','tanggal_masuk','tanggal_keluar'
+        'nomor_rs','pasien_id','pegawai_id','dokter_id','cara_datang','jenis_kasus','keadaan_pra','tindakan_pra','keluhan_utama','anemnesa','circulation','breathing','airway','tanggal_masuk','tanggal_keluar'
     ];
     protected $casts = [
         'keadaan_pra' => 'array',
         'tindakan_pra' => 'array',
-        'anemnesa' => 'array',
-        'circulation' => 'array',
-        'breathing' => 'array'
+        'airway' => 'array',
+        'breathing' => 'array',
+        'circulation' => 'array'
+
     ];
     
     public function pasien(){

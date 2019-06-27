@@ -23,7 +23,8 @@ Route::get('/periksa/tambah', 'Pegawai\PeriksaController@create')->name('pegawai
 Route::get('/periksa/status', 'Pegawai\PeriksaController@status')->name('pegawai.periksa.status');
 Route::get('/periksa/show/{id}', 'Pegawai\PeriksaController@show')->name('pegawai.periksa.show');
 Route::post('/periksa/tambah', 'Pegawai\PeriksaController@store')->name('pegawai.periksa.store');
-Route::post('/periksa/tambah', 'Pegawai\PeriksaController@storepra')->name('pegawai.periksa.store.pra');
+Route::post('/periksa/tambah/pra', 'Pegawai\PeriksaController@storepra')->name('pegawai.periksa.store.pra');
+Route::post('/periksa/tambah/primer', 'Pegawai\PeriksaController@storeprimer')->name('pegawai.periksa.store.primer');
 Route::get('/periksa/edit/{id}', 'Pegawai\PeriksaController@edit')->name('pegawai.periksa.edit');
 Route::put('/periksa/update', 'Pegawai\PeriksaController@update')->name('pegawai.periksa.update');
 Route::delete('/periksa/delete/{id}', 'Pegawai\PeriksaController@delete')->name('pegawai.periksa.delete');
