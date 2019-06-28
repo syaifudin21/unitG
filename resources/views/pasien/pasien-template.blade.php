@@ -70,9 +70,9 @@
 
         <li><a class="app-menu__item {{(Request::is('pasien'))? 'active': ''}}" href="{{route('pasien.home')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
 
-        {{-- <li><a class="app-menu__item {{(Request::is('pasien/dokter') OR \Request::is('pasien/dokter/*'))? 'active': ''}}" href="{{route('pasien.dokter')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Dokter</span></a></li>
-        
-        <li><a class="app-menu__item {{(Request::is('pasien/pasien') OR \Request::is('pasien/pasien/*'))? 'active': ''}}" href="{{route('pasien.pasien')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Pasien</span></a></li> --}}
+        <li><a class="app-menu__item {{(Request::is('pasien/profil') OR \Request::is('pasien/profil/*'))? 'active': ''}}" href="{{route('pasien.profil')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label">Rubah Profil</span></a></li>
+        <li><a class="app-menu__item {{(Request::is('pasien/diagnosa') OR \Request::is('pasien/diagnosa/*'))? 'active': ''}}" href="{{route('pasien.diagnosa')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label">Diagnosa Dokter</span></a></li>
+        <li><a class="app-menu__item {{(Request::is('pasien/periksa') OR \Request::is('pasien/periksa/*'))? 'active': ''}}" href="{{route('pasien.periksa')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Perawatan UGD</span></a></li>
 
       </ul>
     </aside>

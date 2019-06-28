@@ -30,6 +30,7 @@ class CreateDaftarPeriksasTable extends Migration
             $table->text('anemnesa')->nullable();
             $table->string('tanggal_masuk');
             $table->string('tanggal_keluar')->nullable();
+            $table->text('hasil_akhir')->nullable();
             $table->timestamps();
         });
     }

@@ -15,8 +15,8 @@
       <div class="col-md-3 col-sm-12">
           <div class="widget-small primary coloured-icon"><i class="icon fa fa-tasks fa-3x"></i>
             <div class="info">
-              <h4>Gunung</h4>
-              <p><b>10</b></p>
+              <h4>Pasien Perawatan</h4>
+              <p><b>{{$jml_pasienPerawatan}}</b></p>
             </div>
           </div>
         </div>
@@ -24,8 +24,8 @@
       <div class="col-md-3 col-sm-12">
           <div class="widget-small info coloured-icon"><i class="icon fa fa-newspaper-o fa-3x"></i>
             <div class="info">
-              <h4>Berita</h4>
-              <p><b>10</b></p>
+              <h4>Dokter Aktif</h4>
+              <p><b>{{$jml_dokterAktif}}</b></p>
             </div>
           </div>
       </div>
@@ -33,8 +33,8 @@
       <div class="col-md-3 col-sm-12">
           <div class="widget-small danger coloured-icon"><i class="icon fa fa-tasks fa-3x"></i>
             <div class="info">
-              <h4>Gunung Private</h4>
-              <p><b>10</b></p>
+              <h4>Dokter Absen</h4>
+              <p><b>{{$jml_dokterAbsen}}</b></p>
             </div>
           </div>
       </div>
@@ -42,8 +42,8 @@
       <div class="col-md-3 col-sm-12">
           <div class="widget-small warning coloured-icon"><i class="icon fa fa-newspaper-o fa-3x"></i>
             <div class="info">
-              <h4>Berita Private</h4>
-              <p><b>100</b></p>
+              <h4>Pasien Terdaftar</h4>
+              <p><b>{{$jml_pasien}}</b></p>
             </div>
           </div>
       </div>

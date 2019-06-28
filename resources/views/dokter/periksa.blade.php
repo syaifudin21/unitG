@@ -1,4 +1,4 @@
-@extends('pegawai.pegawai-template')
+@extends('dokter.dokter-template')
 @section('css')
 
 @endsection
@@ -8,10 +8,6 @@
         <div>
             <h1>Periksa Pasien</h1>
             <p>Informasi pasien terdaftar</p>
-        </div>
-        <div class="btn-group float-right" role="group" aria-label="Basic example">
-            <a class="btn btn-primary mr-1 mb-1 btn-sm" href="{{route('pegawai.periksa.create')}}">
-                <i class="fa fa-plus"></i>Tambah Periksa</a> 
         </div>
     </div>
 
@@ -27,8 +23,7 @@
                                 <th>Pasien</th>
                                 <th>Jenis Kasus</th>
                                 <th>Masuk Keluar</th>
-                                <th>Dokter</th>
-                                <th>Pegawai</th>
+                                <th>Perawat Pegawai</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -42,10 +37,9 @@
                                         Masuk : {{hari_tanggal_waktu($periksa->tanggal_masuk, true)}} <br>
                                         Keluar : {{!empty($periksa->tanggal_keluar)? hari_tanggal_waktu($periksa->tanggal_keluar, true) : '-'}} 
                                 </td>
-                                <td>{{$periksa->dokter->nama}}</td>
                                 <td>{{$periksa->pegawai->nama}}</td>
                                 <td class="text-center">
-                                    <a class="btn btn-outline-info btn-sm" href="{{route('pegawai.periksa.show', ['id'=> $periksa->id])}}">Detail</a>
+                                    <a class="btn btn-outline-info btn-sm" href="{{route('dokter.periksa.show', ['id'=> $periksa->id])}}">Detail</a>
                              
                                 </td>
                             </tr>

@@ -1,4 +1,4 @@
-@extends('pegawai.pegawai-template')
+@extends('dokter.dokter-template')
 @section('css')
 
 @endsection
@@ -64,74 +64,40 @@
                                         <tr><td>Alamat Wali</td> <th id="pasienAlamatWali">{{$periksa->pasien->alamat_wali}}</th></tr>
                                     </table>
                             </div>
-                            @if(!empty($periksa->pasien->riwayatpasien()->count()))
+
                             <div class="col-md-4 col-sm-12">
                                 <div class="row">
                                     <div class="col-sm-12">
                                     <strong>Riwayat Diagnosa Pasien</strong>
                                         <div class="btn-group float-right" role="group" aria-label="Basic example">
-                                            <a class="btn btn-primary mr-1 mb-1 btn-sm" href="{{route('dokter.diagnosa.create')}}">
+                                            <a class="btn btn-primary mr-1 mb-1 btn-sm" href="{{route('dokter.diagnosa.create', ['periksa_id'=> $periksa->id])}}">
                                                 <i class="fa fa-plus"></i>Tambah Diagnosa</a> 
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-sm table-bordered">
+                                <table class="table table-sm table-bordered table-responsive-md">
                                     <thead>
                                     <tr>
                                         <th>Rumah Sakit</th>
-                                        <th>Dokter</th>
                                         <th>Alergi</th>
                                         <th>Penyakit</th>
-                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($periksa->pasien->riwayatpasien()->get() as $riwayat)
+                                    @foreach ($periksa->pasien->riwayatpasien()->orderBy('id','DESC')->get() as $riwayat)
                                     <tr>
-                                            <td>{{$riwayat->rumahsakit->nama}}</td>
-                                            <td>{{$riwayat->dokter->nama}}</td>
+                                    <td colspan="3">{{hari_tanggal_waktu($riwayat->created_at, true)}}</td>
+                                    </tr>
+                                    <tr>
+                                            <td>{{$riwayat->rumahsakit->nama}} <br> {{$riwayat->dokter->nama}}</td>
                                             <td>{{$riwayat->alergi}}</td>
                                             <td>{{$riwayat->penyakit}}</td>
-                                            <td></td>
                                     </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
                             </div>
-                            @else
-                            <div class="col-md-4 col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                    <strong>Profil Dokter</strong><hr>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                        <div class="col-sm-12">
-                                            @if (empty($periksa->dokter->foto))
-                                                <img src="{{asset('images/thumbnail.svg')}}" style="width: 50%" class="rounded" alt="thumbnail" id="fotoPasien">
-                                            @else
-                                                <img src="{{asset($periksa->dokter->foto)}}" style="width: 50%; max-height: 200px" class="rounded" alt="thumbnail" id="fotoPasien">
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <hr>
 
-                                <table class="table table-borderless table-sm">
-                                    <tr><td>Nama </td> <th>{{$periksa->dokter->nama}}</th></tr>
-                                    <tr><td>Alamat </td> <th>{{$periksa->dokter->alamat}}</th></tr>
-                                    <tr><td>Jenis Kelamin </td> <th>{{$periksa->dokter->lp}}</th></tr>
-                                    <tr><td>Pendidikan </td> <th>{{$periksa->dokter->pendidikan}}</th></tr>
-                                    <tr><td>No HP </td> <th>{{$periksa->dokter->hp}}</th></tr>
-                                    <tr><td>Spesialis </td> <th>{{$periksa->dokter->spesialis}}</th></tr>
-                                    <tr><td>Agama </td> <th>{{$periksa->dokter->agama}}</th></tr>
-                                    <tr><td>Status On </td> <th>{{$periksa->dokter->status_on}}</th></tr>
-                                </table>
-
-                                
-                               
-                                
-                            </div>
-                            @endif
                         </div>
 
              </div>
@@ -141,7 +107,7 @@
 
             <div class="tile">
                     <div class="tile-body">
-                      <form class="form-horizontal" id="submit-form" method="post" action="{{route('pegawai.periksa.store.pra')}}">
+                      <form class="form-horizontal" id="submit-form" method="post" action="{{route('dokter.periksa.store.pra')}}">
                           {{ csrf_field() }} <input type="hidden" name="id" value="{{$periksa->id}}">
             
                               <div class="row">
@@ -310,7 +276,7 @@
                    </div>
                   </div>
 
-                <form action="{{route('pegawai.periksa.store.primer')}}" method="post">
+                <form action="{{route('dokter.periksa.store.primer')}}" method="post">
                     @csrf <input type="hidden" name="id" value="{{$periksa->id}}">
                   <div class="tile">
                       <h4 class="tile-title">Pengkajian Keperawatan Primer</h4>
@@ -584,7 +550,7 @@
 
 
                 <div class="tile">
-                    <h4 class="tile-title">Tindakan Keperawatan <a id="btn_primer" href="{{route('pegawai.keperawatan.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
+                    <h4 class="tile-title">Tindakan Keperawatan <a id="btn_primer" href="{{route('dokter.keperawatan.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
                     <div class="tile-body">
                         <table class="table table-sm table-bordered">
                             <thead>
@@ -599,7 +565,7 @@
                                 <tr>
                                     <td>{{hari_tanggal_waktu($keperawatan->created_at,true)}}</td>
                                     <td>{{$keperawatan->tindakan}}</td>
-                                    <td>{{!empty($dokter_id)? "Dokter ". $keperawatan->dokter->nama : $keperawatan->pegawai->nama}}</td>
+                                    <td>{{empty($dokter_id)? "Dokter ". $keperawatan->dokter->nama : ''}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -608,7 +574,7 @@
                 </div>
 
                 <div class="tile">
-                    <h4 class="tile-title">Pemberian Obat dan Cairan Obat-obatan <a id="btn_obat" href="{{route('pegawai.obatcairan.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
+                    <h4 class="tile-title">Pemberian Obat dan Cairan Obat-obatan <a id="btn_obat" href="{{route('dokter.obatcairan.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
                     <div class="tile-body">
                         <table class="table table-sm table-bordered">
                             <thead>
@@ -627,7 +593,7 @@
                                     <td>{{$obatcairan->obat_cairan}}</td>
                                     <td>{{$obatcairan->rute}}</td>
                                     <td>{{$obatcairan->dosis}}</td>
-                                    <td>{{!empty($dokter_id)? "Dokter ". $obatcairan->dokter->nama : $obatcairan->pegawai->nama}}</td>
+                                    <td>{{empty($dokter_id)? "Dokter ". $obatcairan->dokter->nama : $obatcairan->pegawai->nama}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -636,7 +602,7 @@
                 </div>
 
                 <div class="tile">
-                    <h4 class="tile-title">Observasi Lanjutan <a id="btn_observasi" href="{{route('pegawai.observasi.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
+                    <h4 class="tile-title">Observasi Lanjutan</h4>
                     <div class="tile-body">
                         <table class="table table-sm table-bordered table-responsive-md">
                             <thead>
@@ -670,7 +636,7 @@
                 </div>
                 
                 <div class="tile">
-                    <h4 class="tile-title">Alat yang terpasang di pasiean <a id="btn_alat" href="{{route('pegawai.alatterpasang.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
+                    <h4 class="tile-title">Alat yang terpasang di pasiean <a id="btn_alat" href="{{route('dokter.alatterpasang.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
                     <div class="tile-body">
                         <table class="table table-sm table-bordered">
                             <thead>
@@ -691,7 +657,7 @@
                                     <td>{{$alatterpasang->lokasi}}</td>
                                     <td>{{$alatterpasang->ukuran}}</td>
                                     <td>{{$alatterpasang->keterangan}}</td>
-                                    <td>{{!empty($dokter_id)? "Dokter ". $alat->dokter->nama : $alatterpasang->pegawai->nama}}</td>
+                                    <td>{{empty($dokter_id)? "Dokter ". $alatterpasang->dokter->nama : $alatterpasang->pegawai->nama}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -700,7 +666,7 @@
                 </div>
 
 
-                <form action="{{route('pegawai.periksa.store.akhir')}}" method="post">
+                <form action="{{route('dokter.periksa.store.akhir')}}" method="post">
                 @csrf @method('delete') <input type="hidden" name="id" value="{{$periksa->id}}">
                <div class="tile">
                     <h4 class="tile-title">Hasil Akhir</h4>

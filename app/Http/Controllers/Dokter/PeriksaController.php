@@ -1,42 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\Pegawai;
+namespace App\Http\Controllers\Dokter;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use File;
 use App\Models\DaftarPeriksa;
-use App\Models\Pegawai;
-use App\Models\Dokter;
-use App\Models\RumahSakit;
-use Carbon\Carbon;
 use App\Models\TindakanKeperawatan;
 use App\Models\PemberianObat;
 use App\Models\AlatTerpasang;
-use App\Models\ObservasiLanjutan;
+use Illuminate\Support\Facades\Auth;
 
 class PeriksaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:pegawai');
+        $this->middleware('auth:dokter');
     }
     public function index()
     {
-        $periksas = DaftarPeriksa::where('nomor_rs', env('RS_NOMOR'))->paginate(20);
-    	return view('pegawai.periksa', compact('periksas'));
+        $periksas = DaftarPeriksa::where('nomor_rs', env('RS_NOMOR'))->where('dokter_id',Auth::user()->id)->paginate(20);
+    	return view('dokter.periksa', compact('periksas'));
     }
 
-    public function create()
-    {
-        $pegawais = Pegawai::all();
-        $dokters = Dokter::where('status_on', 'ON')->get();
-        return view('pegawai.periksa-tambah', compact('pegawais', 'dokters'));
-    }
     public function show($id)
     {
         $periksa = DaftarPeriksa::find($id);
-        return view('pegawai.periksa-show', compact('periksa'));
+        return view('dokter.periksa-show', compact('periksa'));
     }
     public function store(Request $request)
     {
@@ -48,54 +37,14 @@ class PeriksaController extends Controller
             'jenis_kasus' => 'required|string',
         ]);
 
-        $rs = RumahSakit::find(1);
-
         $periksa = new DaftarPeriksa();
         $periksa->fill($request->all());
-        $periksa['nomor_rs'] = $rs->nomor_rs;
+        $periksa['nomor_rs'] = env('RS_NOMOR');
         $periksa['tanggal_masuk'] = date("Y-m-d H:i:s");
         $periksa->save();
 
         if($periksa){
-            return redirect(route('pegawai.periksa.show',['id'=> $periksa->id]))
-            ->with(['alert'=> "'title':'Berhasil','text':'Data Berhasil Disimpan', 'icon':'success','buttons': false, 'timer': 1200"]);
-        }else{
-            return back()
-            ->with(['alert'=> "'title':'Gagal Menyimpan','text':'Data gagal disimpan, periksa kembali data inputan', 'icon':'error'"])
-            ->withInput($request->all());
-        }
-    }
-    public function edit($id)
-    {
-        $periksa = DaftarPeriksa::findOrFail($id);
-        return view('pegawai.periksa-edit', compact('periksa'));
-    }
-    public function status()
-    {
-        $periksa = DaftarPeriksa::find($_GET['id']);
-        if ($periksa->status_on == 'ON') {
-            $periksa['status_on'] = 'OFF';
-        }else{
-            $periksa['status_on'] = 'ON';
-        }
-        $periksa->save();
-        return response(['kode'=> '00', 'status' => $periksa->status_on]);
-    }
-
-    public function update(Request $request)
-    {
-        $this->validate($request, [
-            'nama' => 'required|string|max:255',
-            'username' => 'required|string|max:255',
-            'alamat' => 'required|string',
-        ]);
-
-        $periksa =DaftarPeriksa::findOrFail($request->id);
-        $periksa->fill($request->all());
-        $periksa->save();
-
-        if($periksa){
-            return redirect($request->redirect)
+            return redirect(route('dokter.periksa.show',['id'=> $periksa->id]))
             ->with(['alert'=> "'title':'Berhasil','text':'Data Berhasil Disimpan', 'icon':'success','buttons': false, 'timer': 1200"]);
         }else{
             return back()
@@ -214,7 +163,7 @@ class PeriksaController extends Controller
     public function createkeperawatan($periksa_id)
     {
         $periksa = DaftarPeriksa::findOrFail($periksa_id);
-        return view('pegawai.keperawatan-create', compact('periksa'));
+        return view('dokter.keperawatan-create', compact('periksa'));
     }
     public function storekeperawatan(Request $request)
     {
@@ -234,7 +183,7 @@ class PeriksaController extends Controller
     public function createobatcairan($periksa_id)
     {
         $periksa = DaftarPeriksa::findOrFail($periksa_id);
-        return view('pegawai.obatcairan-create', compact('periksa'));
+        return view('dokter.obatcairan-create', compact('periksa'));
     }
     public function storeobatcairan(Request $request)
     {
@@ -251,30 +200,10 @@ class PeriksaController extends Controller
             ->withInput($request->all());
         }
     }
-    public function createobservasi($periksa_id)
-    {
-        $periksa = DaftarPeriksa::findOrFail($periksa_id);
-        return view('pegawai.observasi-create', compact('periksa'));
-    }
-    public function storeobservasi(Request $request)
-    {
-        $observasi = new ObservasiLanjutan();
-        $observasi->fill($request->all());
-        $observasi->save();
-
-        if($observasi){
-            return redirect($request->redirect)
-            ->with(['alert'=> "'title':'Berhasil','text':'Data Berhasil Disimpan', 'icon':'success','buttons': false, 'timer': 1200"]);
-        }else{
-            return back()
-            ->with(['alert'=> "'title':'Gagal Menyimpan','text':'Data gagal disimpan, periksa kembali data inputan', 'icon':'error'"])
-            ->withInput($request->all());
-        }
-    }
     public function createalatterpasang($periksa_id)
     {
         $periksa = DaftarPeriksa::findOrFail($periksa_id);
-        return view('pegawai.alatterpasang-create', compact('periksa'));
+        return view('dokter.alatterpasang-create', compact('periksa'));
     }
     public function storealatterpasang(Request $request)
     {

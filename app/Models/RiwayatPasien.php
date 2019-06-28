@@ -10,7 +10,7 @@ class RiwayatPasien extends Model
         'nomor_rs','pasien_id','dokter_id','alergi','penyakit'
     ];
     public function rumahsakit(){
-        return $this->belongsTo(RumahSakit::class, 'nomor_rs', 'id');
+        return $this->belongsTo(RumahSakit::class, 'nomor_rs', 'nomor_rs');
     }
     public function pasien(){
         return $this->belongsTo(Pasien::class, 'pasien_id', 'id');

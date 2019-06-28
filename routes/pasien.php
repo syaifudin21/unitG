@@ -5,9 +5,16 @@ Route::get('/login', 'Pasien\LoginController@form');
 Route::post('/login', 'Pasien\LoginController@login')->name('pasien.login');
 Route::post('/logout', 'Pasien\LoginController@logout')->name('pasien.logout');
 
-// Route::get('/profil', 'Reporter\ReporterController@profil')->name('reporter.profil');
-// Route::put('/profil/update', 'Reporter\ReporterController@profilupdate')->name('reporter.profil.update');
-// Route::put('/profil/password', 'Reporter\ReporterController@profilupdatepasword')->name('reporter.profil.password');
+Route::get('/profil', 'Pasien\ProfilController@profil')->name('pasien.profil');
+Route::get('/diagnosa', 'Pasien\ProfilController@diagnosa')->name('pasien.diagnosa');
+Route::put('/profil/update', 'Pasien\ProfilController@profilupdate')->name('pasien.profil.update');
+Route::put('/profil/password', 'Pasien\ProfilController@profilupdatepasword')->name('pasien.profil.password');
+
+Route::get('/periksa', 'Pasien\PeriksaController@index')->name('pasien.periksa');
+Route::get('/periksa/show/{id}', 'Pasien\PeriksaController@show')->name('pasien.periksa.show');
+Route::get('/periksa/observasi/{periksa_id}', 'Pasien\PeriksaController@createobservasi')->name('pasien.observasi.create');
+Route::post('/periksa/observasi', 'Pasien\PeriksaController@storeobservasi')->name('pasien.observasi.store');
+
 
 // Route::get('/berita', 'Reporter\BeritaController@index')->name('reporter.berita');
 // Route::get('/berita/publish', 'Reporter\BeritaController@publish')->name('reporter.berita.publish');

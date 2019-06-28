@@ -67,12 +67,11 @@
       <ul class="app-menu">
 
         <li><a class="app-menu__item {{(Request::is('dokter'))? 'active': ''}}" href="{{route('dokter.home')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-{{-- 
-        <li><a class="app-menu__item {{(Request::is('admin/gunung') OR \Request::is('admin/gunung/*'))? 'active': ''}}" href="{{route('admin.gunung')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Gunung</span></a></li>
 
-        <li><a class="app-menu__item {{(Request::is('admin/berita') OR \Request::is('admin/berita/*'))? 'active': ''}}" href="{{route('admin.berita')}}"><i class="app-menu__icon fa fa-newspaper-o"></i><span class="app-menu__label"> Berita</span></a></li>
+        <li><a class="app-menu__item {{(Request::is('dokter/periksa') OR \Request::is('dokter/periksa/*'))? 'active': ''}}" href="{{route('dokter.periksa')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label">Perawatan Pasien</span></a></li>
 
-        <li><a class="app-menu__item {{(Request::is('admin/user') OR \Request::is('admin/user/*'))? 'active': ''}}" href="{{route('admin.user')}}"><i class="app-menu__icon fa fa-user-circle-o"></i><span class="app-menu__label"> User Admin</span></a></li> --}}
+        <li><a class="app-menu__item {{(Request::is('dokter/diagnosa') OR \Request::is('dokter/diagnosa/*'))? 'active': ''}}" href="{{route('dokter.diagnosa')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label">Diagnosa Pasien</span></a></li>
+
       </ul>
     </aside>
     @yield('content')

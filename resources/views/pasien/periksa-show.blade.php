@@ -1,4 +1,4 @@
-@extends('pegawai.pegawai-template')
+@extends('pasien.pasien-template')
 @section('css')
 
 @endsection
@@ -8,6 +8,13 @@
         <div>
             <h1>Pemeriksaan Detail</h1>
             <p>Informasi pemeriksaan pasien </p>
+
+            
+
+            
+        </div>
+        <div class="btn-group float-right" role="group" aria-label="Basic example">
+                <a id="btn_observasi" href="{{route('pasien.observasi.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah Keluhan</a>
         </div>
     </div>
 
@@ -66,15 +73,6 @@
                             </div>
                             @if(!empty($periksa->pasien->riwayatpasien()->count()))
                             <div class="col-md-4 col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                    <strong>Riwayat Diagnosa Pasien</strong>
-                                        <div class="btn-group float-right" role="group" aria-label="Basic example">
-                                            <a class="btn btn-primary mr-1 mb-1 btn-sm" href="{{route('dokter.diagnosa.create')}}">
-                                                <i class="fa fa-plus"></i>Tambah Diagnosa</a> 
-                                        </div>
-                                    </div>
-                                </div>
                                 <table class="table table-sm table-bordered">
                                     <thead>
                                     <tr>
@@ -294,15 +292,6 @@
                                                 </div>
                                             </div>
                                             <hr>
-                                            <div class="row">
-                                                <div class="col-8">
-                                                        <small class="form-text text-muted" id="jadwalhelp">Keadaan Pra Hospital, Tindakan Pra Hospital dan juga Anemnesa Perawat tidak bisa dirubah lagi jika sudah dismpan</small>
-                                                </div>
-                                                <div class="col-4"><button id="btn_keadaan_pra" class="btn btn-primary btn-block" type="submit">Simpan</button></div>
-                                            </div>
-                                            
-                                                
-                                            
                                         </div>
                               </div>
             
@@ -568,23 +557,15 @@
                                         </div>
                                     </div>
                                     
-                                </div>
                           </div>
                       </div>
-                      <div class="tile-footer" id="footer_keperawatan">
-                            <div class="row">
-                                    <div class="col-8">
-                                            {{-- <small class="form-text text-muted" id="jadwalhelp">Keterangan </small> --}}
-                                    </div>
-                                    <div class="col-4"><button id="btn_keperawatan" class="btn btn-primary btn-block" type="submit">Simpan</button></div>
-                                </div>
                       </div>
                   </div>
                 </form>
 
 
                 <div class="tile">
-                    <h4 class="tile-title">Tindakan Keperawatan <a id="btn_primer" href="{{route('pegawai.keperawatan.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
+                    <h4 class="tile-title">Tindakan Keperawatan</h4>
                     <div class="tile-body">
                         <table class="table table-sm table-bordered">
                             <thead>
@@ -608,7 +589,7 @@
                 </div>
 
                 <div class="tile">
-                    <h4 class="tile-title">Pemberian Obat dan Cairan Obat-obatan <a id="btn_obat" href="{{route('pegawai.obatcairan.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
+                    <h4 class="tile-title">Pemberian Obat dan Cairan Obat-obatan</h4>
                     <div class="tile-body">
                         <table class="table table-sm table-bordered">
                             <thead>
@@ -636,7 +617,7 @@
                 </div>
 
                 <div class="tile">
-                    <h4 class="tile-title">Observasi Lanjutan <a id="btn_observasi" href="{{route('pegawai.observasi.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
+                    <h4 class="tile-title">Observasi Lanjutan <a id="btn_observasi" href="{{route('pasien.observasi.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
                     <div class="tile-body">
                         <table class="table table-sm table-bordered table-responsive-md">
                             <thead>
@@ -670,7 +651,7 @@
                 </div>
                 
                 <div class="tile">
-                    <h4 class="tile-title">Alat yang terpasang di pasiean <a id="btn_alat" href="{{route('pegawai.alatterpasang.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
+                    <h4 class="tile-title">Alat yang terpasang di pasiean</h4>
                     <div class="tile-body">
                         <table class="table table-sm table-bordered">
                             <thead>
@@ -782,14 +763,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tile-footer" id="footer_konfirmasi">
-                            <div class="row">
-                                <div class="col-8">
-                                        <b class="form-text text-danger" id="jadwalhelp">Dengan ini pasien tidak lagi dirawat di UGD. Semua data keperawatan mengenai pasien tidak lagi bisa dimutahirkan </b>
-                                </div>
-                                <div class="col-4"><button class="btn btn-danger btn-block" type="submit">Konfirmasi Hasil Akhir</button></div>
-                            </div>
-                    </div>
                 </div>
                 </form>
 
@@ -807,36 +780,14 @@
 
 @section('script')
 <script>
-    var pegawai =  {{Auth::guard('pegawai')->check() == 1 ? 'true': 'false'}};
-    var dokter =  {{Auth::guard('dokter')->check() == 1 ? 'true': 'false'}};
-    var pasien =  {{Auth::guard('pasien')->check() == 1 ? 'true': 'false'}};
-    var tindakanPra = {{empty($periksa->anemnesa) ? 'true': 'false' }}
-    var selesai =  {{empty($periksa->tanggal_keluar)? 'true': 'false'}};
 
-    if (tindakanPra == false && selesai==true) {
-        // jQuery("input[type='text']").prop("disabled", true);
-        jQuery("#avpu ,#pernafasan ,#tensiDarah ,#suhu ,#nadi ,#spo2 ,#o2 ,#cpr ,#infus ,#ngt ,#nasopharingealTube ,#ett ,#suction ,#krikotiroidotomi ,#bvm ,#bidai ,#catheterUrine ,#bebanTekan ,#heacting ,#obat ,#lain ,#keluhanUtama ,#anemnesa").prop("disabled", true);
-        $("#btn_keadaan_pra").css("display", "none")
-    }
-    if (pasien == true  && selesai==true) {
-        jQuery("#btn_keperawatan, #airway_patenTidak_paten airway_patenTidak_paten, #airway_patenTidak_tidakPaten, #airway_patenTidak_tidakPatenSnoring, #airway_patenTidak_tidakPatenGargling, #airway_patenTidak_tidakPatenStridor, #airway_patenTidak_tidakPatenBendaAsing, #airway_patenTidak_tidakPatenLain, #airway_keperawatan_JalanNafasTidakEfektif, #airway_keperawatan_resikoGagalNafas, #breathing_polaNafas_teratur, #breathing_polaNafas_tidakTeratur, #breathing_suaranafas_vesikuler, #breathing_suaranafas_bronchovesikuler, #breathing_suaranafas_whezing, #breathing_suaranafas_ronchi, #breathing_polaNafas_apneu, #breathing_polaNafas_dyspneu, #breathing_polaNafas_bradipneu, #breathing_polaNafas_takhipneu, #breathing_polaNafas_orthopneu, #breathing_ototBantuNafas_reetraksiDada, #breathing_ototBantuNafas_cupingHidung, #breathing_jenisNafas_pernafasanDada, #breathing_jenisNafas_pernafasanPerut, #breathing_diagnosaKeperawatan_polaNafasTidakEfektif, #breathing_diagnosaKeperawatan_gangguanPertukaranGas, #breathing_frekuensiNafas, #circulation_akral_hangat, #circulation_akral_dingin, #circulation_pucat_ya, #circulation_pucat_tidak, #circulation_cianosis_ya #circulation_cianosis_ya, #circulation_cianosis_tidak, #circulation_pengisianKapiler_kurangDari2, #circulation_pengisianKapiler_lebihDari2, #circulation_tekananDarah, #circulation_nadi, #circulation_nadi_tidakTeraba, #circulation_perdarahan_ya, #circulation_perdarahan_lokasi, #circulation_perdarahan_tidak, #circulation_kehilanganCairan_diare, #circulation_kehilanganCairan_muntah, #circulation_kehilanganCairan_lukaBakar, #circulation_kehilanganCairan_perdarahan, #circulation_kelembabanKulit_lembab, #circulation_kelembabanKulit_kering, #circulation_turgor_normal, #circulation_turgor_kurang, #circulation_luasLukaBakar, #circulation_grade, #circulation_produksiUrine circulation_produksiUrine, #circulation_diagnosaKeperawatan_gangguanPerfusiJaringanPerifer,#circulation_diagnosaKeperawatan_gangguanKeseimbanganCairanElektrolit,#circulation_diagnosaKeperawatan_resikoShokHipovolemik").prop("disabled", true);
-        jQuery("#btn_konfirmasi, #akhir_dirawat_ruangan, #akhir_dirawat_kelas, #akhir_operasi_kamar, #akhir_operasi_tanggal, #akhir_rujuk_ke, #akhir_rujuk_alasan, #akhir_pulang_indikasiMedis, #akhir_pulang_tanggal, #akhir_pulang_permintaanSendiri, #akhir_pulang_menolakRawat, #akhir_pulang_meninggalDunia, #akhir_pulang_doa, #akhir_pulang_lain").prop("disabled", true);
-        $("#btn_primer, #btn_alat, #btn_obat").css("display", "none")
-    }
-    if (pasien == false  && selesai==true) {
-        $('#btn_observasi').css("display", "none")
-    }
-    if (selesai == false){
         jQuery("input").prop("disabled", true);
         jQuery("textarea").prop("disabled", true);
         jQuery("input").removeAttr('name');
         jQuery("textarea").removeAttr('name');
         $("#btn_primer, #btn_alat, #btn_obat").css("display", "none")
         $("#btn_keadaan_pra").css("display", "none")
-        $('#btn_observasi').css("display", "none")
         $("#footer_konfirmasi, #footer_keperawatan").css("display", "none")
         
-    }
-
 </script>
 @endsection

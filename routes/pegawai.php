@@ -25,9 +25,9 @@ Route::get('/periksa/show/{id}', 'Pegawai\PeriksaController@show')->name('pegawa
 Route::post('/periksa/tambah', 'Pegawai\PeriksaController@store')->name('pegawai.periksa.store');
 Route::post('/periksa/tambah/pra', 'Pegawai\PeriksaController@storepra')->name('pegawai.periksa.store.pra');
 Route::post('/periksa/tambah/primer', 'Pegawai\PeriksaController@storeprimer')->name('pegawai.periksa.store.primer');
+Route::delete('/periksa/tambah/akhir', 'Pegawai\PeriksaController@storeakhir')->name('pegawai.periksa.store.akhir');
 Route::get('/periksa/edit/{id}', 'Pegawai\PeriksaController@edit')->name('pegawai.periksa.edit');
 Route::put('/periksa/update', 'Pegawai\PeriksaController@update')->name('pegawai.periksa.update');
-Route::delete('/periksa/delete/{id}', 'Pegawai\PeriksaController@delete')->name('pegawai.periksa.delete');
 
 Route::get('/periksa/keperawatan/{periksa_id}', 'Pegawai\PeriksaController@createkeperawatan')->name('pegawai.keperawatan.create');
 Route::post('/periksa/keperawatan', 'Pegawai\PeriksaController@storekeperawatan')->name('pegawai.keperawatan.store');
