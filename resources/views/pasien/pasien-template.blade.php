@@ -73,6 +73,7 @@
         <li><a class="app-menu__item {{(Request::is('pasien/profil') OR \Request::is('pasien/profil/*'))? 'active': ''}}" href="{{route('pasien.profil')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label">Rubah Profil</span></a></li>
         <li><a class="app-menu__item {{(Request::is('pasien/diagnosa') OR \Request::is('pasien/diagnosa/*'))? 'active': ''}}" href="{{route('pasien.diagnosa')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label">Diagnosa Dokter</span></a></li>
         <li><a class="app-menu__item {{(Request::is('pasien/periksa') OR \Request::is('pasien/periksa/*'))? 'active': ''}}" href="{{route('pasien.periksa')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Perawatan UGD</span></a></li>
+        <li><a class="app-menu__item {{(Request::is('pasien/keluhan') OR \Request::is('pasien/keluhan/*'))? 'active': ''}}" href="{{route('pasien.keluhan')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label">Keluhan Pasien</span></a></li>
 
       </ul>
     </aside>

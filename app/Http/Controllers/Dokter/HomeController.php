@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Dokter;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\RiwayatPasien;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -13,6 +14,8 @@ class HomeController extends Controller
     }
     public function index()
     {
-    	return view('dokter.dokter-home');
+        $dokter = Auth::user();
+        $jml_diagnosa = RiwayatPasien::where('dokter_id',Auth::user()->id)->count();
+    	return view('dokter.dokter-home', compact('jml_diagnosa', 'dokter'));
     }
 }

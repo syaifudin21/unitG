@@ -50,7 +50,7 @@
                                             </div>
                                         </div>
                                     <table class="table table-sm table-borderless">
-                                        <tr><td>Nama</td> <th id="pasienNama">{{$periksa->pasien->nama}}</th></tr>
+                                        <tr><td>Nama</td> <th id="pasienNama"><a href="{{route('dokter.pasien.show',['id'=>$periksa->pasien->id])}}">{{$periksa->pasien->nama}}</a></th></tr>
                                         <tr><td>Username</td> <th id="pasienUsername">{{$periksa->pasien->username}}</th></tr>
                                         <tr><td>Jenis Kelamin</td> <th id="pasienLp">{{$periksa->pasien->lp}}</th></tr>
                                         <tr><td>Kota</td> <th id="pasienKota">{{$periksa->pasien->kota}}</th></tr>
@@ -73,6 +73,7 @@
                                             <a class="btn btn-primary mr-1 mb-1 btn-sm" href="{{route('dokter.diagnosa.create', ['periksa_id'=> $periksa->id])}}">
                                                 <i class="fa fa-plus"></i>Tambah Diagnosa</a> 
                                         </div>
+                                        <hr>
                                     </div>
                                 </div>
                                 <table class="table table-sm table-bordered table-responsive-md">
@@ -89,7 +90,7 @@
                                     <td colspan="3">{{hari_tanggal_waktu($riwayat->created_at, true)}}</td>
                                     </tr>
                                     <tr>
-                                            <td>{{$riwayat->rumahsakit->nama}} <br> {{$riwayat->dokter->nama}}</td>
+                                            <td>{{$riwayat->rumahsakit->nama}} <br> <a href="{{route('dokter.dokter.show',['id'=>$riwayat->dokter->id])}}">{{$riwayat->dokter->nama}}</a></td>
                                             <td>{{$riwayat->alergi}}</td>
                                             <td>{{$riwayat->penyakit}}</td>
                                     </tr>

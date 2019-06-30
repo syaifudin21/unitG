@@ -61,16 +61,18 @@
         <div>
           <p class="app-sidebar__user-name">{{Auth::user('dokter')->nama}}</p>
 
-          <p class="app-sidebar__user-name"><small>Dokter</small></p>
+          <p class="app-sidebar__user-name"><small id='status_on_template'>Dokter - {{Auth::user()->status_on}}</small></p>
         </div>
       </div>
       <ul class="app-menu">
 
         <li><a class="app-menu__item {{(Request::is('dokter'))? 'active': ''}}" href="{{route('dokter.home')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
 
+        <li><a class="app-menu__item {{(Request::is('dokter/profil') OR \Request::is('dokter/profil/*'))? 'active': ''}}" href="{{route('dokter.profil')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label">Rubah Profil</span></a></li>
+
         <li><a class="app-menu__item {{(Request::is('dokter/periksa') OR \Request::is('dokter/periksa/*'))? 'active': ''}}" href="{{route('dokter.periksa')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label">Perawatan Pasien</span></a></li>
 
-        <li><a class="app-menu__item {{(Request::is('dokter/diagnosa') OR \Request::is('dokter/diagnosa/*'))? 'active': ''}}" href="{{route('dokter.diagnosa')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label">Diagnosa Pasien</span></a></li>
+        <li><a class="app-menu__item {{(Request::is('dokter/diagnosa') OR \Request::is('dokter/diagnosa/*'))? 'active': ''}}" href="{{route('dokter.diagnosa')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label">Mendiagnosa Pasien</span></a></li>
 
       </ul>
     </aside>

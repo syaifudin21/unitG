@@ -10,7 +10,7 @@ class ObservasiLanjutan extends Model
         'nomor_rs','periksa_id','pasien_id','pegawai_id','dokter_id','gcs','t','n','rr','s','sat','keluhan'
     ];
     public function rumahsakit(){
-        return $this->belongsTo(RumahSakit::class, 'nomor_rs', 'id');
+        return $this->belongsTo(RumahSakit::class, 'nomor_rs', 'nomor_rs');
     }
     public function periksa(){
         return $this->belongsTo(DaftarPeriksa::class, 'periksa_id', 'id');

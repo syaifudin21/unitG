@@ -1,4 +1,4 @@
-@extends('pegawai.pegawai-template')
+@extends('dokter.dokter-template')
 @section('css')
 <link href="{{ asset('css/dropzone.css') }}" rel="stylesheet">
 <script src="{{ asset('js/dropzone.js') }}"></script>
@@ -78,7 +78,7 @@
                                             Masuk : {{hari_tanggal_waktu($periksa->tanggal_masuk, true)}} <br>
                                             Keluar : {{!empty($periksa->tanggal_keluar)? hari_tanggal_waktu($periksa->tanggal_keluar, true) : '-'}} 
                                     </td>
-                                    <td><a href="{{route('pegawai.dokter.show', ['dokter_id'=>$periksa->dokter->id])}}">{{$periksa->dokter->nama}}</a></td>
+                                    <td><a href="{{route('dokter.dokter.show', ['dokter_id'=>$periksa->dokter->id])}}">{{$periksa->dokter->nama}}</a></td>
                                     <td>{{$periksa->pegawai->nama}}</td>
                                     <td>
                                         @if($periksa->hasil_akhir != NULL)
@@ -127,7 +127,7 @@
                             <tr>
                                 <td>{{hari_tanggal_waktu($diagnosa->created_at, true)}}</td>
                                 <td>{{$diagnosa->rumahsakit->nama}}</td>
-                                <td><a href="{{route('pegawai.dokter.show', ['dokter_id'=>$periksa->dokter->id])}}">{{$diagnosa->dokter->nama}}</a></td>
+                                <td><a href="{{route('dokter.dokter.show', ['dokter_id'=>$diagnosa->dokter->id])}}">{{$diagnosa->dokter->nama}}</a></td>
                                 <td>{{$diagnosa->alergi}}</td>
                                 <td>{{$diagnosa->penyakit}}</td>
                             </tr>
@@ -193,7 +193,4 @@
 @endsection
 
 @section('script')
-<script src="{{asset('js/hapus.js')}}"></script>
-<script src="{{asset('js/hapusfunc.js')}}"></script>
-
 @endsection

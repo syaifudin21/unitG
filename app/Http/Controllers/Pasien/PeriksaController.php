@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DaftarPeriksa;
+use App\Models\RiwayatPasien;
+use App\Models\ObservasiLanjutan;
 
 class PeriksaController extends Controller
 {
@@ -42,5 +44,10 @@ class PeriksaController extends Controller
             ->with(['alert'=> "'title':'Gagal Menyimpan','text':'Data gagal disimpan, periksa kembali data inputan', 'icon':'error'"])
             ->withInput($request->all());
         }
+    }
+    public function keluhan()
+    {
+        $keluhans = ObservasiLanjutan::where('pasien_id', Auth::user()->id)->paginate(20);
+        return view('pasien.keluhan', compact('keluhans'));
     }
 }

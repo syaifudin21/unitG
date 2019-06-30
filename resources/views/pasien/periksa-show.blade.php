@@ -14,7 +14,7 @@
             
         </div>
         <div class="btn-group float-right" role="group" aria-label="Basic example">
-                <a id="btn_observasi" href="{{route('pasien.observasi.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah Keluhan</a>
+                <a id="btn_observasi1" href="{{route('pasien.observasi.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah Keluhan</a>
         </div>
     </div>
 
@@ -71,32 +71,6 @@
                                         <tr><td>Alamat Wali</td> <th id="pasienAlamatWali">{{$periksa->pasien->alamat_wali}}</th></tr>
                                     </table>
                             </div>
-                            @if(!empty($periksa->pasien->riwayatpasien()->count()))
-                            <div class="col-md-4 col-sm-12">
-                                <table class="table table-sm table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th>Rumah Sakit</th>
-                                        <th>Dokter</th>
-                                        <th>Alergi</th>
-                                        <th>Penyakit</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($periksa->pasien->riwayatpasien()->get() as $riwayat)
-                                    <tr>
-                                            <td>{{$riwayat->rumahsakit->nama}}</td>
-                                            <td>{{$riwayat->dokter->nama}}</td>
-                                            <td>{{$riwayat->alergi}}</td>
-                                            <td>{{$riwayat->penyakit}}</td>
-                                            <td></td>
-                                    </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            @else
                             <div class="col-md-4 col-sm-12">
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -115,7 +89,7 @@
                                     <hr>
 
                                 <table class="table table-borderless table-sm">
-                                    <tr><td>Nama </td> <th>{{$periksa->dokter->nama}}</th></tr>
+                                    <tr><td>Nama </td> <th><a href="{{route('pasien.dokter.show',['id'=>$periksa->dokter->id])}}">{{$periksa->dokter->nama}}</a></th></tr>
                                     <tr><td>Alamat </td> <th>{{$periksa->dokter->alamat}}</th></tr>
                                     <tr><td>Jenis Kelamin </td> <th>{{$periksa->dokter->lp}}</th></tr>
                                     <tr><td>Pendidikan </td> <th>{{$periksa->dokter->pendidikan}}</th></tr>
@@ -129,7 +103,6 @@
                                
                                 
                             </div>
-                            @endif
                         </div>
 
              </div>
@@ -617,7 +590,7 @@
                 </div>
 
                 <div class="tile">
-                    <h4 class="tile-title">Observasi Lanjutan <a id="btn_observasi" href="{{route('pasien.observasi.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
+                    <h4 class="tile-title">Observasi Lanjutan <a id="btn_observasi2" href="{{route('pasien.observasi.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah</a></h4>
                     <div class="tile-body">
                         <table class="table table-sm table-bordered table-responsive-md">
                             <thead>
@@ -768,7 +741,15 @@
 
                 
 			</div>
-		  </div>
+          </div>
+          
+          <div class="row d-print-none mt-2">
+                
+
+                <div class="col-12 text-right">
+                    <a class="btn btn-primary" href="javascript:window.print();" target="_blank"><i class="fa fa-print"></i> Print</a>
+                </div>
+            </div>
 
     </div>
 </main>
@@ -780,14 +761,16 @@
 
 @section('script')
 <script>
+    var tgl_keluar = {{$periksa->tangal_keluar == NULL ? 'true' : 'false'}};
+    if (tgl_keluar == true) {
+        $("#btn_observasi1").css("display", "none")
+        $("#btn_observasi2").css("display", "none")
+    }
 
-        jQuery("input").prop("disabled", true);
-        jQuery("textarea").prop("disabled", true);
-        jQuery("input").removeAttr('name');
-        jQuery("textarea").removeAttr('name');
-        $("#btn_primer, #btn_alat, #btn_obat").css("display", "none")
-        $("#btn_keadaan_pra").css("display", "none")
-        $("#footer_konfirmasi, #footer_keperawatan").css("display", "none")
+        // jQuery("input").prop("disabled", true);
+        // jQuery("textarea").prop("disabled", true);
+        // jQuery("input").removeAttr('name');
+        // jQuery("textarea").removeAttr('name');
         
 </script>
 @endsection

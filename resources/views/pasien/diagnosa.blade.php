@@ -31,7 +31,7 @@
                         <tr>
                             <td>{{hari_tanggal_waktu($diagnosa->created_at, true)}}</td>
                             <td>{{$diagnosa->rumahsakit->nama}}</td>
-                            <td>{{$diagnosa->dokter->nama}}</td>
+                            <td><a href="{{route('pasien.dokter.show',['id'=>$diagnosa->dokter->id])}}">{{$diagnosa->dokter->nama}}</a></td>
                             <td>{{$diagnosa->alergi}}</td>
                             <td>{{$diagnosa->penyakit}}</td>
                         </tr>

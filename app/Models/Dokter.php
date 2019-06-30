@@ -38,4 +38,8 @@ class Dokter extends Authenticatable
     {
         return $this->hasMany(TindakanKeperawatan::class, 'dokter_id', 'id');
     }
+    public function riwayatpasien()
+    {
+        return $this->hasMany(RiwayatPasien::class, 'dokter_id', 'id');
+    }
 }

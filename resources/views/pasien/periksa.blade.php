@@ -24,6 +24,7 @@
                                 <th>Masuk Keluar</th>
                                 <th>Dokter</th>
                                 <th>Perawat / Pegawai</th>
+                                <th>Hasil Akhir</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -36,11 +37,25 @@
                                         Masuk : {{hari_tanggal_waktu($periksa->tanggal_masuk, true)}} <br>
                                         Keluar : {{!empty($periksa->tanggal_keluar)? hari_tanggal_waktu($periksa->tanggal_keluar, true) : '-'}} 
                                 </td>
-                                <td>{{$periksa->dokter->nama}}</td>
+                                <td><a href="{{route('pasien.dokter.show',['id'=>$periksa->dokter->id])}}">{{$periksa->dokter->nama}}</a></td>
                                 <td>{{$periksa->pegawai->nama}}</td>
+                                <td>
+                                    @if($periksa->hasil_akhir != NULL)
+                                    {!!$periksa->hasil_akhir['akhir_dirawat_ruangan'] != '-' ? "<b>Rawat Ruangan </b>". $periksa->hasil_akhir['akhir_dirawat_ruangan']. ' - '. $periksa->hasil_akhir['akhir_dirawat_kelas']: ''!!}
+                                    {!!$periksa->hasil_akhir['akhir_operasi_kamar'] != '-' ? "<b> Operasi </b>". $periksa->hasil_akhir['akhir_operasi_kamar'].' - '. $periksa->hasil_akhir['akhir_operasi_tanggal']: ''!!}
+                                    {!!$periksa->hasil_akhir['akhir_rujuk_ke'] != '-' ? "<b> Rujuk </b>". $periksa->hasil_akhir['akhir_rujuk_ke'].' - '. $periksa->hasil_akhir['akhir_rujuk_alasan']: ''!!}
+                                    {!!$periksa->hasil_akhir['akhir_pulang_indikasiMedis'] != '-' ? "<b> Pulang </b>". $periksa->hasil_akhir['akhir_pulang_indikasiMedis'] . "Tanggal ". $periksa->hasil_akhir['akhir_pulang_tanggal']: ''!!}
+                                    {!!$periksa->hasil_akhir['akhir_pulang_permintaanSendiri'] != '-' ? "<b> Pulang </b>". $periksa->hasil_akhir['akhir_pulang_permintaanSendiri']: ''!!}
+                                    {!!$periksa->hasil_akhir['akhir_pulang_menolakRawat'] != '-' ? "<b> Menolak Rawat </b>". $periksa->hasil_akhir['akhir_pulang_menolakRawat']: ''!!}
+                                    {!! !empty($periksa->hasil_akhir['akhir_pulang_meninggalDunia'])? "<b> Meninggal Dunia </b>". $periksa->hasil_akhir['akhir_pulang_meninggalDunia']: ''!!}
+                                    {!! !empty($periksa->hasil_akhir['akhir_pulang_doa'] ) ? "<b> DOA </b>". $periksa->hasil_akhir['akhir_pulang_doa']: ''!!}
+                                    {!!$periksa->hasil_akhir['akhir_pulang_lain'] != '-' ? "<b> Lain </b>". $periksa->hasil_akhir['akhir_pulang_lain']: ''!!}
+                                    @endif
+                                </td>
                                 <td class="text-center">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
                                     <a class="btn btn-outline-info btn-sm" href="{{route('pasien.periksa.show', ['id'=> $periksa->id])}}">Detail</a>
-                             
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach
