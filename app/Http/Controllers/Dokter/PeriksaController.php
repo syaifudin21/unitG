@@ -18,7 +18,7 @@ class PeriksaController extends Controller
     }
     public function index()
     {
-        $periksas = DaftarPeriksa::where('nomor_rs', env('RS_NOMOR'))->where('dokter_id',Auth::user()->id)->paginate(20);
+        $periksas = DaftarPeriksa::where('nomor_rs', env('RS_NOMOR'))->where('dokter_id',Auth::user()->id)->get();
     	return view('dokter.periksa', compact('periksas'));
     }
 

@@ -16,7 +16,7 @@ class DokterController extends Controller
     }
     public function index()
     {
-        $dokters = Dokter::paginate(20);
+        $dokters = Dokter::all();
     	return view('pegawai.dokter', compact('dokters'));
     }
 

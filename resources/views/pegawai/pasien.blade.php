@@ -17,7 +17,7 @@
             <div class="tile">
                 <h3 class="tile-title">Daftar Pasien</h3>
                 <div class="bs-component">
-                    <table class="table table-sm">
+                    <table id="sampleTable" class="table table-sm">
                         <thead>
                             <tr>
                                 <th>Nomor</th>
@@ -44,7 +44,6 @@
                         </tbody>
                     </table>
 
-                    {{$pasiens->links()}}
 
                 </div>
 
@@ -59,6 +58,8 @@
 @endsection
 
 @section('script')
-<script src="{{asset('js/hapus.js')}}"></script>
-<script src="{{asset('js/hapusfunc.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/jquery.dataTables.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/dataTables.bootstrap.min.js')}}"></script>
+<script type="text/javascript">$('#sampleTable').DataTable();</script>
+
 @endsection

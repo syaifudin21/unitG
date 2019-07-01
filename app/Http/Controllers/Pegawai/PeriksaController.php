@@ -9,7 +9,6 @@ use App\Models\DaftarPeriksa;
 use App\Models\Pegawai;
 use App\Models\Dokter;
 use App\Models\RumahSakit;
-use Carbon\Carbon;
 use App\Models\TindakanKeperawatan;
 use App\Models\PemberianObat;
 use App\Models\AlatTerpasang;
@@ -23,7 +22,7 @@ class PeriksaController extends Controller
     }
     public function index()
     {
-        $periksas = DaftarPeriksa::where('nomor_rs', env('RS_NOMOR'))->paginate(20);
+        $periksas = DaftarPeriksa::where('nomor_rs', env('RS_NOMOR'))->get();
     	return view('pegawai.periksa', compact('periksas'));
     }
 

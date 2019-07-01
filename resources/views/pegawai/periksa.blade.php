@@ -20,7 +20,7 @@
             <div class="tile">
                 <h3 class="tile-title">Daftar Pasien Perawatan</h3>
                 <div class="bs-component">
-                    <table class="table table-sm table-responsive-md">
+                    <table  id="sampleTable" class="table table-sm table-responsive-md">
                         <thead>
                             <tr>
                                 <th>Nomor Pasien</th>
@@ -53,8 +53,6 @@
                         </tbody>
                     </table>
 
-                    {{$periksas->links()}}
-
                 </div>
 
             </div>
@@ -68,4 +66,8 @@
 @endsection
 
 @section('script')
+<script type="text/javascript" src="{{asset('js/plugins/jquery.dataTables.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/dataTables.bootstrap.min.js')}}"></script>
+<script type="text/javascript">$('#sampleTable').DataTable();</script>
+
 @endsection

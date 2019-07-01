@@ -15,7 +15,7 @@ class PasienController extends Controller
     }
     public function index()
     {
-        $pasiens = Pasien::paginate(20);
+        $pasiens = Pasien::all();
     	return view('pegawai.pasien', compact('pasiens'));
     }
     public function show($id)
