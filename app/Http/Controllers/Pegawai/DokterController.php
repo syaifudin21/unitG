@@ -22,7 +22,7 @@ class DokterController extends Controller
 
     public function create()
     {
-        return view('pegawai.dokter-tambah');
+        return view('pegawai.dokter-create');
     }
     public function show($id)
     {

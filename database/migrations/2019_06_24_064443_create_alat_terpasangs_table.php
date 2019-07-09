@@ -20,10 +20,11 @@ class CreateAlatTerpasangsTable extends Migration
             $table->integer('pasien_id');
             $table->integer('pegawai_id')->nullable();
             $table->integer('dokter_id')->nullable();
-            $table->string('jenis');
+            $table->string('inventaris_id');
             $table->string('lokasi')->nullable();
             $table->string('ukuran')->nullable();
             $table->string('keterangan');
+            $table->enum('status',['Terpasang', 'Dicabut'])->default('Terpasang');
             $table->timestamps();
         });
     }

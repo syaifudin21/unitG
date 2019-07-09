@@ -566,7 +566,9 @@
                                 <tr>
                                     <td>{{hari_tanggal_waktu($keperawatan->created_at,true)}}</td>
                                     <td>{{$keperawatan->tindakan}}</td>
-                                    <td>{{empty($dokter_id)? "Dokter ". $keperawatan->dokter->nama : ''}}</td>
+                                    <td>
+                                        {{!empty($keperawatan->dokter_id)?  "Dokter ". $keperawatan->dokter->nama :  $keperawatan->pegawai->nama }}
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -594,7 +596,9 @@
                                     <td>{{$obatcairan->obat_cairan}}</td>
                                     <td>{{$obatcairan->rute}}</td>
                                     <td>{{$obatcairan->dosis}}</td>
-                                    <td>{{empty($dokter_id)? "Dokter ". $obatcairan->dokter->nama : $obatcairan->pegawai->nama}}</td>
+                                    <td>
+                                        {{!empty($obatcairan->dokter_id)?  "Dokter ". $obatcairan->dokter->nama :  $obatcairan->pegawai->nama }}
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -654,11 +658,13 @@
                             @foreach ($periksa->alatterpasang()->get() as $alatterpasang)
                                 <tr>
                                     <td>{{hari_tanggal_waktu($alatterpasang->created_at,true)}}</td>
-                                    <td>{{$alatterpasang->jenis}}</td>
+                                    <td>{{$alatterpasang->inventaris->jenis}}</td>
                                     <td>{{$alatterpasang->lokasi}}</td>
-                                    <td>{{$alatterpasang->ukuran}}</td>
+                                    <td>{{$alatterpasang->inventaris->ukuran}}</td>
                                     <td>{{$alatterpasang->keterangan}}</td>
-                                    <td>{{empty($dokter_id)? "Dokter ". $alatterpasang->dokter->nama : $alatterpasang->pegawai->nama}}</td>
+                                    <td>
+                                        {{!empty($alatterpasang->dokter_id)?  "Dokter ". $alatterpasang->dokter->nama :  $alatterpasang->pegawai->nama }}
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -785,11 +791,11 @@
         jQuery("#avpu ,#pernafasan ,#tensiDarah ,#suhu ,#nadi ,#spo2 ,#o2 ,#cpr ,#infus ,#ngt ,#nasopharingealTube ,#ett ,#suction ,#krikotiroidotomi ,#bvm ,#bidai ,#catheterUrine ,#bebanTekan ,#heacting ,#obat ,#lain ,#keluhanUtama ,#anemnesa").prop("disabled", true);
         $("#btn_keadaan_pra").css("display", "none")
     }
-    if (pasien == true  && selesai==true) {
-        jQuery("#btn_keperawatan, #airway_patenTidak_paten airway_patenTidak_paten, #airway_patenTidak_tidakPaten, #airway_patenTidak_tidakPatenSnoring, #airway_patenTidak_tidakPatenGargling, #airway_patenTidak_tidakPatenStridor, #airway_patenTidak_tidakPatenBendaAsing, #airway_patenTidak_tidakPatenLain, #airway_keperawatan_JalanNafasTidakEfektif, #airway_keperawatan_resikoGagalNafas, #breathing_polaNafas_teratur, #breathing_polaNafas_tidakTeratur, #breathing_suaranafas_vesikuler, #breathing_suaranafas_bronchovesikuler, #breathing_suaranafas_whezing, #breathing_suaranafas_ronchi, #breathing_polaNafas_apneu, #breathing_polaNafas_dyspneu, #breathing_polaNafas_bradipneu, #breathing_polaNafas_takhipneu, #breathing_polaNafas_orthopneu, #breathing_ototBantuNafas_reetraksiDada, #breathing_ototBantuNafas_cupingHidung, #breathing_jenisNafas_pernafasanDada, #breathing_jenisNafas_pernafasanPerut, #breathing_diagnosaKeperawatan_polaNafasTidakEfektif, #breathing_diagnosaKeperawatan_gangguanPertukaranGas, #breathing_frekuensiNafas, #circulation_akral_hangat, #circulation_akral_dingin, #circulation_pucat_ya, #circulation_pucat_tidak, #circulation_cianosis_ya #circulation_cianosis_ya, #circulation_cianosis_tidak, #circulation_pengisianKapiler_kurangDari2, #circulation_pengisianKapiler_lebihDari2, #circulation_tekananDarah, #circulation_nadi, #circulation_nadi_tidakTeraba, #circulation_perdarahan_ya, #circulation_perdarahan_lokasi, #circulation_perdarahan_tidak, #circulation_kehilanganCairan_diare, #circulation_kehilanganCairan_muntah, #circulation_kehilanganCairan_lukaBakar, #circulation_kehilanganCairan_perdarahan, #circulation_kelembabanKulit_lembab, #circulation_kelembabanKulit_kering, #circulation_turgor_normal, #circulation_turgor_kurang, #circulation_luasLukaBakar, #circulation_grade, #circulation_produksiUrine circulation_produksiUrine, #circulation_diagnosaKeperawatan_gangguanPerfusiJaringanPerifer,#circulation_diagnosaKeperawatan_gangguanKeseimbanganCairanElektrolit,#circulation_diagnosaKeperawatan_resikoShokHipovolemik").prop("disabled", true);
-        jQuery("#btn_konfirmasi, #akhir_dirawat_ruangan, #akhir_dirawat_kelas, #akhir_operasi_kamar, #akhir_operasi_tanggal, #akhir_rujuk_ke, #akhir_rujuk_alasan, #akhir_pulang_indikasiMedis, #akhir_pulang_tanggal, #akhir_pulang_permintaanSendiri, #akhir_pulang_menolakRawat, #akhir_pulang_meninggalDunia, #akhir_pulang_doa, #akhir_pulang_lain").prop("disabled", true);
-        $("#btn_primer, #btn_alat, #btn_obat").css("display", "none")
-    }
+    // if (pasien == true  && selesai==true) {
+    //     jQuery("#btn_keperawatan, #airway_patenTidak_paten airway_patenTidak_paten, #airway_patenTidak_tidakPaten, #airway_patenTidak_tidakPatenSnoring, #airway_patenTidak_tidakPatenGargling, #airway_patenTidak_tidakPatenStridor, #airway_patenTidak_tidakPatenBendaAsing, #airway_patenTidak_tidakPatenLain, #airway_keperawatan_JalanNafasTidakEfektif, #airway_keperawatan_resikoGagalNafas, #breathing_polaNafas_teratur, #breathing_polaNafas_tidakTeratur, #breathing_suaranafas_vesikuler, #breathing_suaranafas_bronchovesikuler, #breathing_suaranafas_whezing, #breathing_suaranafas_ronchi, #breathing_polaNafas_apneu, #breathing_polaNafas_dyspneu, #breathing_polaNafas_bradipneu, #breathing_polaNafas_takhipneu, #breathing_polaNafas_orthopneu, #breathing_ototBantuNafas_reetraksiDada, #breathing_ototBantuNafas_cupingHidung, #breathing_jenisNafas_pernafasanDada, #breathing_jenisNafas_pernafasanPerut, #breathing_diagnosaKeperawatan_polaNafasTidakEfektif, #breathing_diagnosaKeperawatan_gangguanPertukaranGas, #breathing_frekuensiNafas, #circulation_akral_hangat, #circulation_akral_dingin, #circulation_pucat_ya, #circulation_pucat_tidak, #circulation_cianosis_ya #circulation_cianosis_ya, #circulation_cianosis_tidak, #circulation_pengisianKapiler_kurangDari2, #circulation_pengisianKapiler_lebihDari2, #circulation_tekananDarah, #circulation_nadi, #circulation_nadi_tidakTeraba, #circulation_perdarahan_ya, #circulation_perdarahan_lokasi, #circulation_perdarahan_tidak, #circulation_kehilanganCairan_diare, #circulation_kehilanganCairan_muntah, #circulation_kehilanganCairan_lukaBakar, #circulation_kehilanganCairan_perdarahan, #circulation_kelembabanKulit_lembab, #circulation_kelembabanKulit_kering, #circulation_turgor_normal, #circulation_turgor_kurang, #circulation_luasLukaBakar, #circulation_grade, #circulation_produksiUrine circulation_produksiUrine, #circulation_diagnosaKeperawatan_gangguanPerfusiJaringanPerifer,#circulation_diagnosaKeperawatan_gangguanKeseimbanganCairanElektrolit,#circulation_diagnosaKeperawatan_resikoShokHipovolemik").prop("disabled", true);
+    //     jQuery("#btn_konfirmasi, #akhir_dirawat_ruangan, #akhir_dirawat_kelas, #akhir_operasi_kamar, #akhir_operasi_tanggal, #akhir_rujuk_ke, #akhir_rujuk_alasan, #akhir_pulang_indikasiMedis, #akhir_pulang_tanggal, #akhir_pulang_permintaanSendiri, #akhir_pulang_menolakRawat, #akhir_pulang_meninggalDunia, #akhir_pulang_doa, #akhir_pulang_lain").prop("disabled", true);
+    //     $("#btn_primer, #btn_alat, #btn_obat").css("display", "none")
+    // }
     if (pasien == false  && selesai==true) {
         $('#btn_observasi').css("display", "none")
     }

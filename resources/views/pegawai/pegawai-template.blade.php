@@ -70,6 +70,7 @@
         <li><a class="app-menu__item {{(Request::is('pegawai/dokter') OR \Request::is('pegawai/dokter/*'))? 'active': ''}}" href="{{route('pegawai.dokter')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Dokter</span></a></li>
         
         <li><a class="app-menu__item {{(Request::is('pegawai/pasien') OR \Request::is('pegawai/pasien/*'))? 'active': ''}}" href="{{route('pegawai.pasien')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Pasien</span></a></li>
+        <li><a class="app-menu__item {{(Request::is('pegawai/inventaris') OR \Request::is('pegawai/inventaris/*'))? 'active': ''}}" href="{{route('pegawai.inventaris')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Inventaris</span></a></li>
 
       </ul>
     </aside>

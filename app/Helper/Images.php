@@ -27,4 +27,13 @@ class Images extends Model
 
         return $formula;
     }
+    public function nomorperiksa($id)
+    {
+        $id = substr($id, -4);
+        $id = sprintf('%03d', $id);
+        $date = date('ymd');
+        $formula =$date.'0'.$id;
+
+        return $formula;
+    }
 }

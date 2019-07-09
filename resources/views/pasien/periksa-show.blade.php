@@ -8,13 +8,9 @@
         <div>
             <h1>Pemeriksaan Detail</h1>
             <p>Informasi pemeriksaan pasien </p>
-
-            
-
-            
         </div>
         <div class="btn-group float-right" role="group" aria-label="Basic example">
-                <a id="btn_observasi1" href="{{route('pasien.observasi.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah Keluhan</a>
+            <a id="btn_observasi1" href="{{route('pasien.observasi.create', ['periksa_id'=> $periksa->id])}}" class="btn btn-warning float-right">Tambah Keluhan</a>
         </div>
     </div>
 
@@ -495,7 +491,7 @@
                                 <tr>
                                     <td>{{hari_tanggal_waktu($keperawatan->created_at,true)}}</td>
                                     <td>{{$keperawatan->tindakan}}</td>
-                                    <td>{{!empty($dokter_id)? "Dokter ". $keperawatan->dokter->nama : $keperawatan->pegawai->nama}}</td>
+                                    <td>{{!empty($keperawatan->dokter_id)? "Dokter ". $keperawatan->dokter->nama : $keperawatan->pegawai->nama}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -523,7 +519,7 @@
                                     <td>{{$obatcairan->obat_cairan}}</td>
                                     <td>{{$obatcairan->rute}}</td>
                                     <td>{{$obatcairan->dosis}}</td>
-                                    <td>{{!empty($dokter_id)? "Dokter ". $obatcairan->dokter->nama : $obatcairan->pegawai->nama}}</td>
+                                    <td>{{!empty($obatcairan->dokter_id)? "Dokter ". $obatcairan->dokter->nama : $obatcairan->pegawai->nama}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -583,11 +579,11 @@
                             @foreach ($periksa->alatterpasang()->get() as $alatterpasang)
                                 <tr>
                                     <td>{{hari_tanggal_waktu($alatterpasang->created_at,true)}}</td>
-                                    <td>{{$alatterpasang->jenis}}</td>
+                                    <td>{{$alatterpasang->inventaris->jenis}}</td>
                                     <td>{{$alatterpasang->lokasi}}</td>
-                                    <td>{{$alatterpasang->ukuran}}</td>
+                                    <td>{{$alatterpasang->inventaris->ukuran}}</td>
                                     <td>{{$alatterpasang->keterangan}}</td>
-                                    <td>{{!empty($dokter_id)? "Dokter ". $alat->dokter->nama : $alatterpasang->pegawai->nama}}</td>
+                                    <td>{{!empty($alatterpasang->dokter_id)? "Dokter ". $alatterpasang->dokter->nama : $alatterpasang->pegawai->nama}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -685,9 +681,7 @@
 			</div>
           </div>
           
-          <div class="row d-print-none mt-2">
-                
-
+            <div class="row d-print-none mt-2">
                 <div class="col-12 text-right">
                     <a class="btn btn-primary" href="javascript:window.print();" target="_blank"><i class="fa fa-print"></i> Print</a>
                 </div>
@@ -703,8 +697,8 @@
 
 @section('script')
 <script>
-    var tgl_keluar = {{$periksa->tangal_keluar == NULL ? 'true' : 'false'}};
-    if (tgl_keluar == true) {
+    var tgl_keluar = {{( $periksa->tangal_keluar == '' OR $periksa->tangal_keluar==NULL ) ? 'true' : 'false'}};
+    if (tgl_keluar == false) {
         $("#btn_observasi1").css("display", "none")
         $("#btn_observasi2").css("display", "none")
     }

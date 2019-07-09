@@ -43,8 +43,37 @@
                                 <tr><td>Alamat Wali</td> <th id="pasienAlamatWali">{{$periksa->pasien->alamat_wali}}</th></tr>
                             </table>
                         </div>
-                        <div class="col-md-8 col-sm-12">
-                                <b>Observasi Lanjutan</b>
+                        <div class="col-md-4 col-sm-12">
+                            <b>Alat yang sudah dipasangkan</b>
+                            <hr>
+                            <table class="table table-sm table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Inventaris</th>
+                                        <th>Lokasi</th>
+                                        <th class="text-center">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($periksa->alatterpasang()->get() as $alatterpasang)
+                                    <tr>
+                                        <td>{{$alatterpasang->inventaris->jenis}} {{$alatterpasang->inventaris->ukuran}}</td>
+                                        <td>{{$alatterpasang->lokasi}}</td>
+                                        <td class="text-center">
+                                            <div class="toggle-flip">
+                                            <label>
+                                                <input type="checkbox" onchange="status('{{$alatterpasang->id}}')" {{($alatterpasang->status == 'Terpasang')? 'checked' : '' }}  >
+                                                <span class="flip-indecator" style="width: 80px" data-toggle-on="Terpasang" data-toggle-off="Dicabut"></span>
+                                            </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                                <b>Alat yang akan dipasangkan</b>
                                 <hr>
 
                                 <div class="form-group row">
@@ -58,11 +87,18 @@
                                 </div>
                                 
                                 <div class="form-group row">
-                                    <label for="jenis" class="col-sm-3 col-form-label">Jenis</label>
+                                    <label for="inventaris_id" class="col-sm-3 col-form-label">Jenis</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="jenis" id="jenis" placeholder="Jenis" value="{{old('jenis')}}">
-                                        @if ($errors->has('jenis'))
-                                            <small class="form-text text-muted">{{ $errors->first('jenis') }}</small>
+                                        <select name="inventaris_id" class="form-control" id="inventaris_id">
+                                            <option disabled selected>Pilih Jenis Inventaris</option>
+                                            @foreach ($inventariss as $inventaris)
+                                                @if ($inventaris->stok - app('App\Models\Inventaris')->terpasang($inventaris->id) > 0)
+                                                <option value="{{$inventaris->id}}">{{$inventaris->jenis}} {{empty($inventaris->ukuran)?'': '- '.$inventaris->ukuran}}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('inventaris_id'))
+                                            <small class="form-text text-muted">{{ $errors->first('inventaris_id') }}</small>
                                         @endif
                                     </div>
                                 </div>
@@ -75,17 +111,9 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="ukuran" class="col-sm-3 col-form-label">Ukuran</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="ukuran" id="ukuran" placeholder="Ukuran" value="{{old('ukuran')}}">
-                                        @if ($errors->has('ukuran'))
-                                            <small class="form-text text-muted">{{ $errors->first('ukuran') }}</small>
-                                        @endif
-                                    </div>
-                                </div>
 
                             </div>
+                            
                         </div>
                     </div>
                 </form>
@@ -98,7 +126,7 @@
 				  <div class="col-md-4">
                     <div class="float-right">
                         <button class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('submit-form').submit();"><i class="fa fa-fw fa-lg fa-check-circle"></i>Tambah</button>
-                        <a class="btn btn-secondary" href="{{url()->previous()}}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Batal</a>
+                        <a class="btn btn-secondary" href="{{route('pegawai.periksa.show',['id'=>$periksa->id])}}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Batal</a>
                     </div>
 				</div>
                 </div>
@@ -114,4 +142,11 @@
 @endsection
 
 @section('script')
+<script>
+    function status(no) {
+        $.get('{{ route('pegawai.alatterpasang.status')}}?id='+no, function(response){
+            console.log(response);
+        });
+  }
+</script>
 @endsection

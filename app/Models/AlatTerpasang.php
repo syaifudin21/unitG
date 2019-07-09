@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AlatTerpasang extends Model
 {
     protected $fillable = [
-        'nomor_rs','periksa_id','pasien_id','pegawai_id','dokter_id','jenis','lokasi','ukuran','keterangan'
+        'nomor_rs','periksa_id','pasien_id','pegawai_id','dokter_id','inventaris_id','lokasi','ukuran','keterangan','status'
     ];
     public function rumahsakit(){
         return $this->belongsTo(RumahSakit::class, 'nomor_rs', 'id');
@@ -23,5 +23,8 @@ class AlatTerpasang extends Model
     }
     public function pegawai(){
         return $this->belongsTo(Pegawai::class, 'pegawai_id', 'id');
+    }
+    public function inventaris(){
+        return $this->belongsTo(Inventaris::class, 'inventaris_id', 'id');
     }
 }

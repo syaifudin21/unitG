@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRiwayatPasiensTable extends Migration
+class CreateInventarisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateRiwayatPasiensTable extends Migration
      */
     public function up()
     {
-        Schema::create('riwayat_pasiens', function (Blueprint $table) {
+        Schema::create('inventaris', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('nomor_rs');
-            $table->integer('pasien_id');
-            $table->integer('dokter_id')->nullable();
-            $table->string('alergi')->nullable();
-            $table->string('penyakit')->nullable();
-            $table->string('nomor_periksa')->nullable();
+            $table->string('jenis');
+            $table->string('stok');
+            $table->string('ukuran')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateRiwayatPasiensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('riwayat_pasiens');
+        Schema::dropIfExists('inventaris');
     }
 }

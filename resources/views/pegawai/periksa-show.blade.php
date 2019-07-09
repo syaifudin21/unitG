@@ -594,7 +594,9 @@
                                 <tr>
                                     <td>{{hari_tanggal_waktu($keperawatan->created_at,true)}}</td>
                                     <td>{{$keperawatan->tindakan}}</td>
-                                    <td>{{!empty($dokter_id)? "Dokter ". $keperawatan->dokter->nama : $keperawatan->pegawai->nama}}</td>
+                                    <td>
+                                        {{!empty($keperawatan->dokter_id)?  "Dokter ". $keperawatan->dokter->nama :  $keperawatan->pegawai->nama }}
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -622,7 +624,9 @@
                                     <td>{{$obatcairan->obat_cairan}}</td>
                                     <td>{{$obatcairan->rute}}</td>
                                     <td>{{$obatcairan->dosis}}</td>
-                                    <td>{{!empty($dokter_id)? "Dokter ". $obatcairan->dokter->nama : $obatcairan->pegawai->nama}}</td>
+                                    <td>
+                                        {{!empty($obatcairan->dokter_id)?  "Dokter ". $obatcairan->dokter->nama :  $obatcairan->pegawai->nama }}
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -682,11 +686,13 @@
                             @foreach ($periksa->alatterpasang()->get() as $alatterpasang)
                                 <tr>
                                     <td>{{hari_tanggal_waktu($alatterpasang->created_at,true)}}</td>
-                                    <td>{{$alatterpasang->jenis}}</td>
+                                    <td>{{$alatterpasang->inventaris->jenis}}</td>
                                     <td>{{$alatterpasang->lokasi}}</td>
-                                    <td>{{$alatterpasang->ukuran}}</td>
+                                    <td>{{$alatterpasang->inventaris->ukuran}}</td>
                                     <td>{{$alatterpasang->keterangan}}</td>
-                                    <td>{{!empty($dokter_id)? "Dokter ". $alat->dokter->nama : $alatterpasang->pegawai->nama}}</td>
+                                    <td>
+                                        {{!empty($alatterpasang->dokter_id)?  "Dokter ". $alatterpasang->dokter->nama :  $alatterpasang->pegawai->nama }}
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

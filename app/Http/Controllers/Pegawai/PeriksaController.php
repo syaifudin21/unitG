@@ -13,6 +13,7 @@ use App\Models\TindakanKeperawatan;
 use App\Models\PemberianObat;
 use App\Models\AlatTerpasang;
 use App\Models\ObservasiLanjutan;
+use App\Models\Inventaris;
 
 class PeriksaController extends Controller
 {
@@ -53,6 +54,8 @@ class PeriksaController extends Controller
         $periksa->fill($request->all());
         $periksa['nomor_rs'] = $rs->nomor_rs;
         $periksa['tanggal_masuk'] = date("Y-m-d H:i:s");
+        $periksa->save();
+        $periksa['nomor_periksa'] = app('App\Helper\Images')->nomorperiksa($periksa->id);
         $periksa->save();
 
         if($periksa){
@@ -273,7 +276,8 @@ class PeriksaController extends Controller
     public function createalatterpasang($periksa_id)
     {
         $periksa = DaftarPeriksa::findOrFail($periksa_id);
-        return view('pegawai.alatterpasang-create', compact('periksa'));
+        $inventariss = Inventaris::all();
+        return view('pegawai.alatterpasang-create', compact('periksa', 'inventariss'));
     }
     public function storealatterpasang(Request $request)
     {
@@ -282,13 +286,24 @@ class PeriksaController extends Controller
         $alatterpasang->save();
 
         if($alatterpasang){
-            return redirect($request->redirect)
+            return back()
             ->with(['alert'=> "'title':'Berhasil','text':'Data Berhasil Disimpan', 'icon':'success','buttons': false, 'timer': 1200"]);
         }else{
             return back()
             ->with(['alert'=> "'title':'Gagal Menyimpan','text':'Data gagal disimpan, periksa kembali data inputan', 'icon':'error'"])
             ->withInput($request->all());
         }
+    }
+    public function alatstatus()
+    {
+        $alat = AlatTerpasang::find($_GET['id']);
+        if ($alat->status == 'Terpasang') {
+            $alat['status'] = 'Dicabut';
+        }else{
+            $alat['status'] = 'Terpasang';
+        }
+        $alat->save();
+        return response(['kode'=> '00', 'status' => $alat->status]);
     }
     
     public function storeakhir(Request $request)

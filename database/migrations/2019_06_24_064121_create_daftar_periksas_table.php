@@ -16,6 +16,7 @@ class CreateDaftarPeriksasTable extends Migration
         Schema::create('daftar_periksas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('nomor_rs');
+            $table->integer('nomor_periksa')->nullable();
             $table->integer('pasien_id');
             $table->integer('pegawai_id');
             $table->integer('dokter_id');

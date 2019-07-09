@@ -32,3 +32,4 @@ Route::post('/periksa/obatcairan', 'Dokter\PeriksaController@storeobatcairan')->
 
 Route::get('/periksa/alatterpasang/{periksa_id}', 'Dokter\PeriksaController@createalatterpasang')->name('dokter.alatterpasang.create');
 Route::post('/periksa/alatterpasang', 'Dokter\PeriksaController@storealatterpasang')->name('dokter.alatterpasang.store');
+Route::get('/alatterpasang/status', 'Dokter\PeriksaController@alatstatus')->name('dokter.alatterpasang.status');

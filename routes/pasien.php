@@ -20,7 +20,6 @@ Route::post('/periksa/observasi', 'Pasien\PeriksaController@storeobservasi')->na
 
 Route::get('/keluhan', 'Pasien\PeriksaController@keluhan')->name('pasien.keluhan');
 
-
 // Route::get('/berita', 'Reporter\BeritaController@index')->name('reporter.berita');
 // Route::get('/berita/publish', 'Reporter\BeritaController@publish')->name('reporter.berita.publish');
 // Route::get('/berita/tambah', 'Reporter\BeritaController@create')->name('reporter.berita.create');
