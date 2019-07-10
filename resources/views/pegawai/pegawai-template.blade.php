@@ -71,6 +71,7 @@
         
         <li><a class="app-menu__item {{(Request::is('pegawai/pasien') OR \Request::is('pegawai/pasien/*'))? 'active': ''}}" href="{{route('pegawai.pasien')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Pasien</span></a></li>
         <li><a class="app-menu__item {{(Request::is('pegawai/inventaris') OR \Request::is('pegawai/inventaris/*'))? 'active': ''}}" href="{{route('pegawai.inventaris')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Inventaris</span></a></li>
+        <li><a class="app-menu__item {{(Request::is('pegawai/pegawai') OR \Request::is('pegawai/pegawai/*'))? 'active': ''}}" href="{{route('pegawai.pegawai')}}"><i class="app-menu__icon fa fa-tasks"></i><span class="app-menu__label"> Pegawai</span></a></li>
 
       </ul>
     </aside>

@@ -14,6 +14,15 @@ Route::get('/dokter/edit/{id}', 'Pegawai\DokterController@edit')->name('pegawai.
 Route::put('/dokter/update', 'Pegawai\DokterController@update')->name('pegawai.dokter.update');
 Route::delete('/dokter/delete/{id}', 'Pegawai\DokterController@delete')->name('pegawai.dokter.delete');
 
+Route::get('/pegawai', 'Pegawai\PegawaiController@index')->name('pegawai.pegawai');
+Route::get('/pegawai/tambah', 'Pegawai\PegawaiController@create')->name('pegawai.pegawai.create');
+Route::get('/pegawai/status', 'Pegawai\PegawaiController@status')->name('pegawai.pegawai.status');
+Route::get('/pegawai/show/{id}', 'Pegawai\PegawaiController@show')->name('pegawai.pegawai.show');
+Route::post('/pegawai/tambah', 'Pegawai\PegawaiController@store')->name('pegawai.pegawai.store');
+Route::get('/pegawai/edit/{id}', 'Pegawai\PegawaiController@edit')->name('pegawai.pegawai.edit');
+Route::put('/pegawai/update', 'Pegawai\PegawaiController@update')->name('pegawai.pegawai.update');
+Route::delete('/pegawai/delete/{id}', 'Pegawai\PegawaiController@delete')->name('pegawai.pegawai.delete');
+
 Route::get('/inventaris', 'Pegawai\InventarisController@index')->name('pegawai.inventaris');
 Route::get('/inventaris/tambah', 'Pegawai\InventarisController@create')->name('pegawai.inventaris.create');
 Route::get('/inventaris/show/{id}', 'Pegawai\InventarisController@show')->name('pegawai.inventaris.show');
