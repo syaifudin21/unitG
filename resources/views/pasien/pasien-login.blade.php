@@ -73,14 +73,11 @@
       });
     </script>
 
-     @if(Session::has('alert'))
-
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @if(Session::has('alert'))
+    <script src="{{asset('js/sweetalert.min.js')}}"></script>
     <script>
         swal({
-          title: '{{Session::get('title')}}',
-          text: '{{Session::get('text')}}',
-          icon:'{{Session::get('icon')}}',
+        {!!Session::get('alert')!!}
         });
     </script>
     @endif

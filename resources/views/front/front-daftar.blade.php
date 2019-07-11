@@ -22,19 +22,19 @@
         <form action="{{route('pasien.daftar.store')}}" method="post">
           @method('POST') @csrf
           <div class="form-group contact-forms">
-            <input type="text" class="form-control" placeholder="Nama" required="" name="nama" value="{{old('nama')}}">
+            <input type="text" class="form-control" placeholder="Nama" required name="nama" value="{{old('nama')}}">
             @if ($errors->has('nama'))
                 <strong class="text-danger">{{ $errors->first('nama') }}</strong>
             @endif
           </div>
           <div class="form-group contact-forms">
-            <input type="text" class="form-control" placeholder="Username" required="" name="username" value="{{old('username')}}">
+            <input type="text" class="form-control" placeholder="Username" required name="username" value="{{old('username')}}">
             @if ($errors->has('username'))
                 <strong class="text-danger">{{ $errors->first('username') }}</strong>
             @endif
           </div>
           <div class="form-group contact-forms">
-            <input type="password" class="form-control" placeholder="Password" required="" name="password">
+            <input type="password" class="form-control" placeholder="Password" required name="password">
           </div>
           <div class="form-group contact-forms">
             <select name="lp" class="form-control">
@@ -47,31 +47,31 @@
             @endif
           </div>
           <div class="form-group contact-forms">
-            <input type="text" class="form-control" placeholder="Kota" required="" name="kota" value="{{old('kota')}}">
+            <input type="text" class="form-control" placeholder="Kota" required name="kota" value="{{old('kota')}}">
             @if ($errors->has('kota'))
                 <strong class="text-danger">{{ $errors->first('kota') }}</strong>
             @endif
           </div>
           <div class="form-group contact-forms">
-            <input type="text" class="form-control" placeholder="Nomor HP" required="" name="hp_pasien" value="{{old('hp_pasien')}}">
+            <input type="text" class="form-control" placeholder="Nomor HP" required name="hp_pasien" value="{{old('hp_pasien')}}">
             @if ($errors->has('hp_pasien'))
                 <strong class="text-danger">{{ $errors->first('hp_pasien') }}</strong>
             @endif
           </div>
           <div class="form-group contact-forms">
-            <textarea class="form-control" placeholder="Alamat" rows="3" name="alamat_pasien" required="">{{old('alamat_pasien')}}</textarea>
+            <textarea class="form-control" placeholder="Alamat" rows="3" name="alamat_pasien" required>{{old('alamat_pasien')}}</textarea>
             @if ($errors->has('alamat_pasien'))
                 <strong class="text-danger">{{ $errors->first('alamat_pasien') }}</strong>
             @endif
           </div>
           <div class="form-group contact-forms">
-            <input type="text" class="form-control" placeholder="Golongan Darah" required="" name="gol_darah"value="{{old('gol_darah')}}">
+            <input type="text" class="form-control" placeholder="Golongan Darah" required name="gol_darah"value="{{old('gol_darah')}}">
             @if ($errors->has('gol_darah'))
                 <strong class="text-danger">{{ $errors->first('gol_darah') }}</strong>
             @endif
           </div>
           <div class="form-group contact-forms">
-            <input type="text" class="form-control" placeholder="Pekerjaan" required="" name="pekerjaan" value="{{old('pekerjaan')}}">
+            <input type="text" class="form-control" placeholder="Pekerjaan" required name="pekerjaan" value="{{old('pekerjaan')}}">
             @if ($errors->has('pekerjaan'))
                 <strong class="text-danger">{{ $errors->first('pekerjaan') }}</strong>
             @endif
@@ -91,19 +91,19 @@
             @endif
           </div>
           <div class="form-group contact-forms">
-            <input type="text" class="form-control" placeholder="Nama Wali" required="" name="nama_wali" value="{{old('nama_wali')}}">
+            <input type="text" class="form-control" placeholder="Nama Wali" required name="nama_wali" value="{{old('nama_wali')}}">
             @if ($errors->has('nama_wali'))
                 <strong class="text-danger">{{ $errors->first('nama_wali') }}</strong>
             @endif
           </div>
           <div class="form-group contact-forms">
-            <input type="text" class="form-control" placeholder="Nomor HP Wali" required="" name="hp_wali" value="{{old('hp_wali')}}">
+            <input type="text" class="form-control" placeholder="Nomor HP Wali" required name="hp_wali" value="{{old('hp_wali')}}">
             @if ($errors->has('hp_wali'))
                 <strong class="text-danger">{{ $errors->first('hp_wali') }}</strong>
             @endif
           </div>
           <div class="form-group contact-forms">
-            <textarea class="form-control" placeholder="Alamat Wali" rows="3" name="alamat_wali" required="">{{old('alamat_wali')}}</textarea>
+            <textarea class="form-control" placeholder="Alamat Wali" rows="3" name="alamat_wali" required>{{old('alamat_wali')}}</textarea>
             @if ($errors->has('alamat_wali'))
                 <strong class="text-danger">{{ $errors->first('alamat_wali') }}</strong>
             @endif

@@ -48,7 +48,8 @@ class HomeController extends Controller
         if($pasien){
             Auth::guard('pasien')->logout();
             return redirect(route('pasien.login'))
-            ->with(['alert'=> "'title':'Berhasil','text':'Data Berhasil Disimpan', 'icon':'success','buttons': false, 'timer': 1200"]);
+            ->with(['alert'=> "'title':'Pasien ".$pasien->nama." Berhasil Daftar','text':'silahkan login dan masukkan password', 'icon':'success'"])
+            ->withInput($request->all());
         }else{
             return back()
             ->with(['alert'=> "'title':'Gagal Menyimpan','text':'Data gagal disimpan, periksa kembali data inputan', 'icon':'error'"])
