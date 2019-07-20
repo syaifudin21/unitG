@@ -103,6 +103,18 @@ class DokterController extends Controller
             ->withInput($request->all());
         }
     }
+    public function reset($id)
+    {
+        $dokter = Dokter::findOrFail($id);
+        $dokter['password'] = bcrypt(env('DEFAULT_PASSWORD', 121212));
+        $dokter->save();
+        
+        if ($dokter) {
+            return response()->json(['kode'=>'00', 'message'=> 'Dokter Berhasil di Reset'], 200);
+        }else{
+            return response()->json(['kode'=>'01', 'message'=> 'Dokter Gagal di Reset'], 200);
+        }
+    }
     public function delete($id)
     {
         $dokter = Dokter::findOrFail($id);
@@ -115,9 +127,9 @@ class DokterController extends Controller
             // }
 
             $dokter->delete();
-            return response()->json(['kode'=>'00'], 200);
+            return response()->json(['kode'=>'00', 'message'=> 'Dokter Berhasil di Hapus'], 200);
         }else{
-            return response()->json(['kode'=>'01'], 200);
+            return response()->json(['kode'=>'01', 'message'=> 'Dokter Berhasil di Hapus'], 200);
         }
     }
 }

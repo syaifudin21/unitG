@@ -1,5 +1,5 @@
 $("#hapus").click(function () {
-  console.log('as');
+  console.log('hapus js');
     var url = $(this).data("url");
     var redirect = $(this).data("redirect");
     var pesan = $(this).data("pesan");
@@ -29,7 +29,7 @@ $("#hapus").click(function () {
                         var myVar = setInterval(myTimer, 1200);
                         swal({
                             title: "Berhasil",
-                            text: "Berhasil Menghapus Produk",
+                            text: (typeof response.message === 'undefined')? "Berhasil Menghapus Produk" : response.message,
                             icon: "success",
                             buttons: false
                         });

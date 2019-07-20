@@ -1,5 +1,5 @@
 function hapus(action, pesan = 'Item akan dihapus') {
-    console.log('has');
+    console.log('func');
     swal({
             title: "Apakah Kamu Yakin?",
             text: pesan,
@@ -25,7 +25,7 @@ function hapus(action, pesan = 'Item akan dihapus') {
                             var myVar = setInterval(myTimer, 1200);
                             swal({
                                 title: "Berhasil",
-                                text: "Berhasil Menghapus Produk",
+                                text: (typeof response.message === 'undefined')? "Berhasil Menghapus Produk" : response.message,
                                 icon: "success",
                                 buttons: false
                             });

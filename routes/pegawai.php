@@ -13,6 +13,7 @@ Route::post('/dokter/tambah', 'Pegawai\DokterController@store')->name('pegawai.d
 Route::get('/dokter/edit/{id}', 'Pegawai\DokterController@edit')->name('pegawai.dokter.edit');
 Route::put('/dokter/update', 'Pegawai\DokterController@update')->name('pegawai.dokter.update');
 Route::delete('/dokter/delete/{id}', 'Pegawai\DokterController@delete')->name('pegawai.dokter.delete');
+Route::delete('/dokter/reset/{id}', 'Pegawai\DokterController@reset')->name('pegawai.dokter.reset');
 
 Route::get('/pegawai', 'Pegawai\PegawaiController@index')->name('pegawai.pegawai');
 Route::get('/pegawai/tambah', 'Pegawai\PegawaiController@create')->name('pegawai.pegawai.create');
@@ -34,6 +35,7 @@ Route::delete('/inventaris/delete/{id}', 'Pegawai\InventarisController@delete')-
 Route::get('/pasien', 'Pegawai\PasienController@index')->name('pegawai.pasien');
 Route::get('/pasien/show/{id}', 'Pegawai\PasienController@show')->name('pegawai.pasien.show');
 Route::delete('/pasien/delete/{id}', 'Pegawai\PasienController@delete')->name('pegawai.pasien.delete');
+Route::delete('/pasien/reset/{id}', 'Pegawai\PasienController@reset')->name('pegawai.pasien.reset');
 
 Route::get('/periksa', 'Pegawai\PeriksaController@index')->name('pegawai.periksa');
 Route::get('/periksa/tambah', 'Pegawai\PeriksaController@create')->name('pegawai.periksa.create');

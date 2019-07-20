@@ -138,6 +138,8 @@
                 
                 <div class="row d-print-none mt-2">
                     <div class="col-12 text-right">
+                        <button onClick="hapus('{{route('pegawai.dokter.reset', ['id'=> $dokter->id])}}', 'Dokter akan direset?')" class="btn btn-danger">Reset Password Dokter</button>
+
                         <a class="btn btn-primary" href="javascript:window.print();" target="_blank"><i class="fa fa-print"></i> Print</a>
                     </div>
                 </div>
@@ -185,6 +187,8 @@
 @endsection
 
 @section('script')
+<script src="{{asset('js/hapusfunc.js')}}"></script>
+
 <script>
     function status(no) {
         $.get('{{ route('pegawai.dokter.status')}}?id='+no, function(response){
