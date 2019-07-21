@@ -33,6 +33,8 @@ Route::put('/inventaris/update', 'Pegawai\InventarisController@update')->name('p
 Route::delete('/inventaris/delete/{id}', 'Pegawai\InventarisController@delete')->name('pegawai.inventaris.delete');
 
 Route::get('/pasien', 'Pegawai\PasienController@index')->name('pegawai.pasien');
+Route::get('/pasien/tambah', 'Pegawai\PasienController@create')->name('pegawai.pasien.create');
+Route::post('/pasien/tambah', 'Pegawai\PasienController@store')->name('pegawai.pasien.store');
 Route::get('/pasien/show/{id}', 'Pegawai\PasienController@show')->name('pegawai.pasien.show');
 Route::delete('/pasien/delete/{id}', 'Pegawai\PasienController@delete')->name('pegawai.pasien.delete');
 Route::delete('/pasien/reset/{id}', 'Pegawai\PasienController@reset')->name('pegawai.pasien.reset');

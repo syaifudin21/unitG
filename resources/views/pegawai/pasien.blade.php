@@ -9,7 +9,10 @@
             <h1>Pasien yang terdaftar</h1>
             <p>Informasi deskripsi pasien</p>
         </div>
-        
+        <div class="btn-group float-right" role="group" aria-label="Basic example">
+            <a class="btn btn-primary mr-1 mb-1 btn-sm" href="{{route('pegawai.pasien.create')}}">
+                <i class="fa fa-plus"></i>Tambah Pasien</a> 
+        </div>
     </div>
 
     <div class="row">

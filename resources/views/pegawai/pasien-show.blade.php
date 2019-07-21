@@ -39,6 +39,7 @@
                     <div class="col-md-8">
                         <table class="table table-sm">
                             <tr><th colspan="2">Profil Pasien</th></tr>
+                            <tr><td>Nomor Pasien</td> <th id="pasienNama">{{$pasien->nomor}}</th></tr>
                             <tr><td>Nama</td> <th id="pasienNama">{{$pasien->nama}}</th></tr>
                             <tr><td>Username</td> <th id="pasienUsername">{{$pasien->username}}</th></tr>
                             <tr><td>Jenis Kelamin</td> <th id="pasienLp">{{$pasien->lp}}</th></tr>

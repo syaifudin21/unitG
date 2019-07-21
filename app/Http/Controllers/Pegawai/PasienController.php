@@ -36,6 +36,40 @@ class PasienController extends Controller
             return response()->json(['kode'=>'01', 'message'=> 'Pasien Gagal di Reset'], 200);
         }
     }
+    public function create()
+    {
+        return view('pegawai.pasien-create');
+    }
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'nama'  => 'required|string',
+            'lp' => 'required|string',
+            'nama_wali' => 'required|string',
+            'hp_wali' => 'required|string',
+            'alamat_wali' => 'required|string'
+        ]);
+
+        $pasien = new Pasien();
+        $pasien->fill($request->all());
+        $pasien['username'] = 'pasien'.date('ymdHi');
+        $pasien['password'] = bcrypt(env("DEFAULT_PASSWORD", 121212));
+        $pasien->save();
+
+        $pasien['nomor'] = app('App\Helper\Images')->number($pasien->id, 'Pasien');
+        $pasien->save();
+
+
+        if($pasien){
+            return redirect(route('pegawai.pasien.show',['id'=> $pasien->id]))
+            ->with(['alert'=> "'title':'Pasien ".$pasien->nama." Berhasil Daftar','text':'silahkan login dan masukkan password', 'icon':'success'"])
+            ->withInput($request->all());
+        }else{
+            return back()
+            ->with(['alert'=> "'title':'Gagal Menyimpan','text':'Data gagal disimpan, periksa kembali data inputan', 'icon':'error'"])
+            ->withInput($request->all());
+        }
+    }
     public function delete($id)
     {
         $pasien = Pasien::findOrFail($id);
